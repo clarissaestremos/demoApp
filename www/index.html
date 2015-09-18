@@ -18,10 +18,16 @@
 
   <script src="/scripts/application.js"></script>
 </head>
-<body ng-app="SteroidsApplication">
+<body class="menu" ng-app="SteroidsApplication">
 
 <div class="padding" ng-controller="IndexController">
-   <ul >
+
+    <header>
+        <button class="menu-toggle button icon super-navicon button-positive"></button>
+        <nav class="menu-side">This is a side menu</nav>
+    </header>
+
+    <ul >
       <li ng-repeat="item in data track by $index">
         <p>ID: {{item.id}}</p>
         <p>Name: {{item.name}} </p>
@@ -29,6 +35,17 @@
       </li>
     </ul>
 <!--    <p>ID: {{id}}</p>-->
+
+    <script>
+        (function(){
+            var body=$('body');
+            $('.menu-toggle').bind('click', function(){
+                body.toggleClass('menu-open');
+                return false;
+            });
+        })();
+    </script>
+    
 </div>
 
 </body>
