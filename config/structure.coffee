@@ -4,3 +4,11 @@ module.exports =
 
   rootView:
     location: "http://localhost/index.html"
+
+  drawers:
+    right:
+      id: "leftDrawer"
+      location: "www#drawer"
+      showOnAppLoad: false
+    options:
+      animation: "swingingDoor"

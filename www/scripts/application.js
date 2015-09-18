@@ -31,7 +31,7 @@ angular.module('SteroidsApplication', [
                    db.transaction(function(transaction,result){
                         transaction.executeSql("INSERT INTO songArtist (name, picture) values ('"+data.name+"','"+data.picture+"')",[],function(transaction, result){
                         }, function(transaction, error){
-                           // alert("Error inserting data.", error);
+                         
                         });
                     });
                    
