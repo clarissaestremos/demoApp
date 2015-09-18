@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <title>My Steroids App</title>
+
+  <link rel="stylesheet" href="/components/supersonic/css/supersonic.css">
+  <link rel="stylesheet" href="/stylesheets/application.css">
+  <link rel="import" href="/components/supersonic/components/import.html">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://localhost/cordova.js"></script>
+  <script src="/components/steroids-js/steroids.js"></script>
+  <script src="/components/angular/angular.js"></script>
+  <script src="/components/supersonic/supersonic.js"></script>
+  <script src="/components/webcomponentsjs/webcomponents.js"></script>
+
+  <script src="/scripts/application.js"></script>
+</head>
+<body ng-app="SteroidsApplication">
+
+<div class="padding" ng-controller="IndexController">
+   <ul >
+      <li ng-repeat="item in data track by $index">
+        <p>ID: {{item.id}}</p>
+        <p>Name: {{item.name}} </p>
+        <p>Picture: {{item.picture}} </p>
+      </li>
+    </ul>
+<!--    <p>ID: {{id}}</p>-->
+</div>
+
+</body>
+</html>
