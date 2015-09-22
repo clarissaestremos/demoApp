@@ -49,14 +49,12 @@
     </nav><!-- /c-menu slide-left -->
 
     <div id="c-mask" class="c-mask"></div><!-- /c-mask -->
-    
-    
-    
+   
     <ul >
-      <li ng-repeat="item in data track by $index">
+      <li ng-repeat="item in data">
         <p>ID: {{item.id}}</p>
         <p>Name: {{item.name}} </p>
-        <p><img src="{{item.picture}}"/> </p>
+<!--        <p><img src="{{item.picture}}"/> </p>-->
           
       </li>
     </ul>
