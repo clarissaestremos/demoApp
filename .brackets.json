@@ -17,6 +17,8 @@
         "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/angular/angular.min.js",
         "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/webcomponents-lite.min.js",
         "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/webcomponents-lite.js",
-        "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/ShadowDOM.min.js"
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/ShadowDOM.min.js",
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/ShadowDOM.js",
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/MutationObserver.min.js"
     ]
 }
