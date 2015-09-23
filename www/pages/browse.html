@@ -1,16 +1,5 @@
-    <super-navbar>
-      <super-navbar-title>BROWSE</super-navbar-title>
-    </super-navbar>   
-
 <h1>Browse</h1>
 
-<!--
-<div class="ngRepeat-container">
-    <ul>
-       <li ng-repeat="artist in listArtist">{{artist.name}}</li> 
-    </ul>
-</div>
--->
     <div ng-click="showData()"></div><br/>
     Ng-click
     <br>
@@ -24,8 +13,22 @@
       </li>
     </ul>
 
-DANICA LIST
+DANICA LIST NATIVE
     <div class="nativeJavascript-container">
         <ul id="nativeAddArtist">
         </ul>
     </div>
+
+<br><br><br><br>
+<br><br><br><br>
+
+DANICA LIST NG-REPEAT
+
+<br><br><br><br>
+<br><br><br><br>
+
+<div class="ngRepeat-container">
+    <ul>
+       <li ng-repeat="artist in listArtist"><img src="{{artist.picture}}"/><br>{{artist.name}}</li> 
+    </ul>
+</div>
