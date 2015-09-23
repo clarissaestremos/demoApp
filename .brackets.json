@@ -12,6 +12,7 @@
         "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/angular/index.js",
         "C:/Users/IDEYATECH/Desktop/demoApp/Gruntfile.js",
         "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/webcomponents.min.js",
+
         "C:/Users/Danica/OptimizeProject/demoApp/dist/scripts/menu.js",
         "C:/Users/Danica/OptimizeProject/demoApp/Gruntfile.js",
         "C:/Users/Danica/OptimizeProject/demoApp/dist/scripts/application.js",
@@ -25,5 +26,15 @@
         "C:/Users/Danica/OptimizeProject/demoApp/dist/components/angular/angular.js",
         "C:/Users/Danica/OptimizeProject/demoApp/dist/components/webcomponentsjs/webcomponents-lite.min.js",
         "C:/Users/Danica/OptimizeProject/demoApp/dist/components/webcomponentsjs/webcomponents-lite.js"
+
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/scripts/menu.js",
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/webcomponents.js",
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/angular/angular.min.js",
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/webcomponents-lite.min.js",
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/webcomponents-lite.js",
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/ShadowDOM.min.js",
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/ShadowDOM.js",
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/MutationObserver.min.js"
+
     ]
 }
