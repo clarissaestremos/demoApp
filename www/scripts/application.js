@@ -60,6 +60,7 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',funct
 
     var db = window.openDatabase("DB name",1, "Display name",200000);
     $scope.listArtist = [];
+    $scope.search_input="";
 
 //    $scope.showData = function(){
         DataService.getData().then(function(data) {
@@ -129,6 +130,9 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',funct
 //            alert("dropped!");
 //        })
 //    });
-        
+    
+    $scope.search = function(){
+        alert($scope.search_input);
+    }
           
 }]);
