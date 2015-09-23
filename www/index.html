@@ -21,10 +21,15 @@
 
   <script src="/scripts/application.js"></script>
 </head>
+    
 <body class="menu" ng-app="SteroidsApplication">
-
+    
+    
 <div class="padding" ng-controller="IndexController">
 
+    <super-navbar>
+      <super-navbar-title>HELLO</super-navbar-title>
+    </super-navbar>
     <!--<header>
         <button class="menu-toggle button icon super-navicon button-positive"></button>
         <nav class="menu-side">This is a side menu</nav>
@@ -48,11 +53,11 @@
     <nav id="c-menu--slide-left" class="c-menu c-menu--slide-left">
       <button class="c-menu__close">&larr; Close Menu</button>
       <ul class="c-menu__items">
-        <li class="c-menu__item"><a class="c-menu__link" href="#/home">Home</a></li>
-        <li class="c-menu__item"><a class="c-menu__link" href="#/about">About</a></li>
-        <li class="c-menu__item"><a class="c-menu__link" href="#/browse">Browse</a></li>
-        <li class="c-menu__item"><a class="c-menu__link" href="#/search">Search</a></li>
-        <li class="c-menu__item"><a class="c-menu__link" href="#/contact">Contact</a></li>
+        <li class="c-menu__item"><a class="c-menu__link" href="#/home" onclick="closing()">Home</a></li>
+        <li class="c-menu__item"><a class="c-menu__link" href="#/about" onclick="closing()">About</a></li>
+        <li class="c-menu__item"><a class="c-menu__link" href="#/browse" onclick="closing()">Browse</a></li>
+        <li class="c-menu__item"><a class="c-menu__link" href="#/search" onclick="closing()">Search</a></li>
+        <li class="c-menu__item"><a class="c-menu__link" href="#/contact" onclick="closing()">Contact</a></li>
       </ul>
     </nav><!-- /c-menu slide-left -->
 
@@ -71,11 +76,22 @@
             maskId: '#c-mask'
           });
           var slideLeftBtn = document.querySelector('#c-button--slide-left');
+          var linkBtn = document.querySelector('.c-menu__link');
 
           slideLeftBtn.addEventListener('click', function(e) {
             e.preventDefault;
             slideLeft.open();
           });
+        
+          /*linkBtn.addEventListener('click', function(e) {
+            alert("hello");
+              e.preventDefault;
+            slideLeft.close();
+          });*/
+        
+        function closing(){
+            slideLeft.close();
+        }
     </script>
 
 </div>
