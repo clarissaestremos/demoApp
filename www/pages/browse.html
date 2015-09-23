@@ -11,12 +11,21 @@
     </ul>
 </div>
 -->
-
-
-<div class="nativeJavascript-container">
-    <ul id="nativeAddArtist">
-        <li>Yo</li>
+    <div ng-click="showData()"></div><br/>
+    Ng-click
+    <br>
+    <button onclick="">Button click</button><br/><br/>
+    <ul >
+      <li ng-repeat="item in listArtist">
+        <p>ID: {{item.id}}</p>
+        <p>Name: {{item.name}} </p>
+        <p><img src="{{item.picture}}"/> </p>
+          
+      </li>
     </ul>
-</div>
 
-<div id="addTest"></div>
+DANICA LIST
+    <div class="nativeJavascript-container">
+        <ul id="nativeAddArtist">
+        </ul>
+    </div>

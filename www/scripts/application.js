@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var myApp = angular.module('SteroidsApplication', [
   'supersonic', 'ngRoute'
 ]);
@@ -36,10 +35,6 @@ myApp.config(function($routeProvider) {
     })
     
 });
-=======
-var myApp = angular.module('SteroidsApplication',['supersonic']);
-
->>>>>>> e21d315e31d524a4578907a788317d8fa87a8fbe
 
 myApp.service('DataService', function($http) {
   var promise;
@@ -65,15 +60,11 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',funct
 
     var db = window.openDatabase("DB name",1, "Display name",200000);
     $scope.listArtist = [];
-<<<<<<< HEAD
 
-=======
->>>>>>> e21d315e31d524a4578907a788317d8fa87a8fbe
 //    $scope.showData = function(){
         DataService.getData().then(function(data) {
            
             db.transaction(function(transaction){
-<<<<<<< HEAD
                 
                 transaction.executeSql("create table if not exists songArtist(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT)");
 
@@ -82,61 +73,28 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',funct
                     
                     if (result.rows.length>=1) {           
                         $scope.$apply(function () {  
-                        $scope.listArtist = data;
-                    });
+                            $scope.listArtist = data;
+                        });
                         
                         var nativeJavascriptListArtist = data;
                         var ul = document.getElementById("nativeAddArtist");
                         var li = document.createElement("li");
-                        var br = document.createElement("br");
-//                        
-//                        for (var key in nativeJavascriptListArtist) {
-//                           if (nativeJavascriptListArtist.hasOwnProperty(key)) {
-//                               var obj = nativeJavascriptListArtist[key];
-//                                for (var prop in obj) {
-//                                  // important check that this is objects own property 
-//                                  // not from prototype prop inherited
-//                                  if(obj.hasOwnProperty(prop)){
-//                                    li.appendChild(document.createTextNode(obj[prop]));
-//                                    ul.appendChild(li);
-//                                  }
-//                               }
-//                            }
-//                        }
                         
                       for (var p in nativeJavascriptListArtist) {
                         if( nativeJavascriptListArtist.hasOwnProperty(p) ) {
-
-                          result += nativeJavascriptListArtist[p].name;
-                            
                           li.appendChild(document.createTextNode(nativeJavascriptListArtist[p].name));
                           ul.appendChild(li);
-                          ul.appendChild(br);
                         } 
                       } 
                         
-=======
-                transaction.executeSql("create table if not exists songArtist(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT)");
-
-
-                transaction.executeSql("select * from songArtist", [], function(transaction, result) {
-
-                    if (result.rows.length>=1) {
-                        $scope.listArtist = data;
->>>>>>> e21d315e31d524a4578907a788317d8fa87a8fbe
                     }else if (result.rows.length<1){ //first time to use the app
                         for(d of data){
                             transaction.executeSql("INSERT INTO songArtist (name, picture) values ('"+d.name+"', '"+d.picture+"')");
                         }
-<<<<<<< HEAD
                        
                         $scope.$apply(function () {  
                             $scope.listArtist = data;
                         });  
-=======
-                          
-                       select();
->>>>>>> e21d315e31d524a4578907a788317d8fa87a8fbe
 
                       }
                 });
@@ -157,9 +115,8 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',funct
                     }
             });
         });  
-    }
-        
-//    }
+    }      
+//}
 //    
 //    var responsePromise = $http.get("https://glacial-harbor-7075.herokuapp.com/musicArtist/list");
     //alert(responsePromise.);
@@ -174,11 +131,4 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',funct
 //    });
         
           
-<<<<<<< HEAD
 }]);
-=======
-}]);
-
-
-
->>>>>>> e21d315e31d524a4578907a788317d8fa87a8fbe
