@@ -308,3 +308,28 @@ body.has-active-menu {
   opacity: 0.3;
   cursor: not-allowed;
 }
+
+
+#ngClick{
+    background-color: aquamarine;   
+}
+
+/* -----------------------------------------------------------------------------
+  CONTENT
+----------------------------------------------------------------------------- */
+
+#container1, #container2{
+    float: left;
+    padding: 5px;
+    width: 50%;
+    min-height: 80%;
+}
+
+#container1{
+    border-right: solid;   
+}
+
+.contentImg{
+    width: 50px;
+    height: 50px;
+}

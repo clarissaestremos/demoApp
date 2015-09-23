@@ -49,18 +49,35 @@
     </nav><!-- /c-menu slide-left -->
 
     <div id="c-mask" class="c-mask"></div><!-- /c-mask -->
-    <div ng-click="showData()">Ng-click</div><br/>
-    <button onclick="">Button click</button><br/><br/>
-    <ul >
-      <li ng-repeat="item in listArtist">
-        <p>ID: {{item.id}}</p>
-        <p>Name: {{item.name}} </p>
-        <p><img src="{{item.picture}}"/> </p>
-          
-      </li>
-    </ul>
+    
+   
+    <div id="container1">
+        <div id ="ngClick" ng-click="showData()">Ng-click</div><br/>
+        <div>Fetched {{numData1}} data in {{timer}}ms</div><br/><br/>
+        <ul >
+          <li ng-repeat="item in listOfArtist1">
+            <p>ID: {{item.id}}</p>
+            <p>Name: {{item.name}} </p>
+            <p><img class="contentImg" src="{{item.picture}}"/> </p>
 
-<!--    {{listArtist | json}}-->
+          </li>
+        </ul>
+    </div>
+    
+    <div id="container2">
+        <button id="btnClick">Button click</button><br/><br/>
+        <div>Fetched {{numData2}} data in {{timer2}}ms</div><br/><br/>
+        <ul >
+          <li ng-repeat="item in listOfArtist2">
+            <p>ID: {{item.id}}</p>
+            <p>Name: {{item.name}} </p>
+            <p><img class="contentImg" src="{{item.picture}}"/> </p>
+
+          </li>
+        </ul>
+    </div>
+    
+
     
     <script src="/scripts/menu.js"></script>
     <script>
