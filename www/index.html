@@ -24,95 +24,69 @@
     
 <body class="menu" ng-app="SteroidsApplication">
     
-    
-<div class="padding" ng-controller="IndexController">
+    <div class="padding" ng-controller="IndexController">
 
-    <super-navbar>
-      <super-navbar-title>HELLO</super-navbar-title>
-    </super-navbar>
-    <!--<header>
-        <button class="menu-toggle button icon super-navicon button-positive"></button>
-        <nav class="menu-side">This is a side menu</nav>
-    </header>-->
-    
-    <super-navbar>
-      <super-navbar-title>YO</super-navbar-title>
-    </super-navbar>
-    
-    <div id="o-wrapper" class="o-wrapper">
+        <super-navbar>
+          <super-navbar-title>HELLO</super-navbar-title>
+        </super-navbar>
+        <!--<header>
+            <button class="menu-toggle button icon super-navicon button-positive"></button>
+            <nav class="menu-side">This is a side menu</nav>
+        </header>-->
 
-      <div class="c-buttons">
-        <button id="c-button--slide-left" class="c-button button icon super-navicon button-positive"></button>
-      </div>
+        <super-navbar>
+          <super-navbar-title>YO</super-navbar-title>
+        </super-navbar>
 
-      <!-- other content in here -->
+        <div id="o-wrapper" class="o-wrapper">
 
-    </div><!-- /o-wrapper -->
+          <div class="c-buttons">
+            <button id="c-button--slide-left" class="c-button button icon super-navicon button-positive"></button>
+          </div>
 
-    <!-- menus here -->
-    <nav id="c-menu--slide-left" class="c-menu c-menu--slide-left">
-      <button class="c-menu__close">&larr; Close Menu</button>
-      <ul class="c-menu__items">
-        <li class="c-menu__item"><a class="c-menu__link" href="#/home" onclick="closing()">Home</a></li>
-        <li class="c-menu__item"><a class="c-menu__link" href="#/about" onclick="closing()">About</a></li>
-        <li class="c-menu__item"><a class="c-menu__link" href="#/browse" onclick="closing()">Browse</a></li>
-        <li class="c-menu__item"><a class="c-menu__link" href="#/search" onclick="closing()">Search</a></li>
-        <li class="c-menu__item"><a class="c-menu__link" href="#/contact" onclick="closing()">Contact</a></li>
-        <li class="c-menu__item"><a class="c-menu__link" href="#/favorite" onclick="closing()">My Favorites</a></li>
-      </ul>
-    </nav><!-- /c-menu slide-left -->
+          <!-- other content in here -->
 
-    <div id="c-mask" class="c-mask"></div><!-- /c-mask -->
+        </div><!-- /o-wrapper -->
 
-     <!--<div id="container1">
-        <div id ="ngClick" ng-click="showData()">Ng-click</div><br/>
-        <div>Fetched {{numData1}} data in {{timer}}ms</div><br/><br/>
-        <ul >
-          <li ng-repeat="item in listOfArtist1">
-            <p>ID: {{item.id}}</p>
-            <p>Name: {{item.name}} </p>
-            <p><img class="contentImg" src="{{item.picture}}"/> </p>
+        <!-- menus here -->
+        <nav id="c-menu--slide-left" class="c-menu c-menu--slide-left">
+          <button class="c-menu__close">&larr; Close Menu</button>
+          <ul class="c-menu__items">
+            <li class="c-menu__item"><a class="c-menu__link" href="#/home" onclick="closing()">Home</a></li>
+            <li class="c-menu__item"><a class="c-menu__link" href="#/about" onclick="closing()">About</a></li>
+            <li class="c-menu__item"><a class="c-menu__link" href="#/browse" onclick="closing()">Browse</a></li>
+            <li class="c-menu__item"><a class="c-menu__link" href="#/search" onclick="closing()">Search</a></li>
+            <li class="c-menu__item"><a class="c-menu__link" href="#/contact" onclick="closing()">Contact</a></li>
+            <li class="c-menu__item"><a class="c-menu__link" href="#/favorite" onclick="closing()">My Favorites</a></li>
+          </ul>
+        </nav><!-- /c-menu slide-left -->
 
-          </li>
-        </ul>
+        <div id="c-mask" class="c-mask"></div><!-- /c-mask -->
+
+        <div ng-view></div>
+
+        <script src="/scripts/menu.js"></script>
+        <script>
+            var slideLeft = new Menu({
+                wrapper: '#o-wrapper',
+                type: 'slide-left',
+                menuOpenerClass: '.c-button',
+                maskId: '#c-mask'
+              });
+              var slideLeftBtn = document.querySelector('#c-button--slide-left');
+              var linkBtn = document.querySelector('.c-menu__link');
+
+              slideLeftBtn.addEventListener('click', function(e) {
+                e.preventDefault;
+                slideLeft.open();
+              });
+
+            function closing(){
+                slideLeft.close();
+            }
+        </script>
+
     </div>
-    
-    <div id="container2">
-        <button id="btnClick">Button click</button><br/><br/>
-        <div>Fetched {{numData2}} data in {{timer2}}ms</div><br/><br/>
-        <ul >
-          <li ng-repeat="item in listOfArtist2">
-            <p>ID: {{item.id}}</p>
-            <p>Name: {{item.name}} </p>
-            <p><img class="contentImg" src="{{item.picture}}"/> </p>
-
-          </li>
-        </ul>
-    </div>-->
-    <div ng-view></div>
-
-    <script src="/scripts/menu.js"></script>
-    <script>
-        var slideLeft = new Menu({
-            wrapper: '#o-wrapper',
-            type: 'slide-left',
-            menuOpenerClass: '.c-button',
-            maskId: '#c-mask'
-          });
-          var slideLeftBtn = document.querySelector('#c-button--slide-left');
-          var linkBtn = document.querySelector('.c-menu__link');
-
-          slideLeftBtn.addEventListener('click', function(e) {
-            e.preventDefault;
-            slideLeft.open();
-          });
-        
-        function closing(){
-            slideLeft.close();
-        }
-    </script>
-
-</div>
 
 </body>
 </html>

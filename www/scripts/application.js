@@ -34,18 +34,28 @@ myApp.config(function($routeProvider) {
         controller: 'IndexController'
     })
     
-    .when('/bootstrap2', {
-        templateUrl: 'pages/bootstrap2.html',
+    .when('/native', {
+        templateUrl: 'pages/native.html',
         controller: 'IndexController'
     })
     
-    .when('/bootstrap3', {
-        templateUrl: 'pages/bootstrap3.html',
+    .when('/repeat', {
+        templateUrl: 'pages/repeat.html',
         controller: 'IndexController'
     })
     
     .when('/favorite', {
         templateUrl: 'pages/favorite.html',
+        controller: 'IndexController'
+    })
+    
+    .when('/favorite2', {
+        templateUrl: 'pages/favorite2.html',
+        controller: 'IndexController'
+    })
+    
+    .when('/favorite3', {
+        templateUrl: 'pages/favorite3.html',
         controller: 'IndexController'
     })
     
@@ -72,6 +82,7 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',funct
     var db = window.openDatabase("DB name",1, "Display name",200000);
     
     var list = [];
+    $scope.browseArtist = [];
     $scope.listArtist1 = [];
     $scope.listArtist2 = [];
     $scope.numData1 = 0;
@@ -90,6 +101,19 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',funct
                             transaction.executeSql("INSERT INTO songArtist (name, picture) values ('"+d.name+"', '"+d.picture+"')");
                         }
                       }
+                    
+                    $scope.$apply(function () {  
+                        $scope.browseArtist = data;
+                    });
+                    
+                    var nativeJavascriptListArtist = data;
+                    var ul = document.getElementById("nativeAddArtist");
+
+                    for (var p in nativeJavascriptListArtist) {
+                        if( nativeJavascriptListArtist.hasOwnProperty(p) ) {
+                          ul.innerHTML += "<li>"+"<img src='"+nativeJavascriptListArtist[p].picture+"'/><br>"+nativeJavascriptListArtist[p].name+"</li>";
+                        } 
+                      } 
                         
                 });
             });
@@ -142,19 +166,35 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',funct
         timer = (dt2.getMilliseconds() - timer)/1000;
         return list;
     }
+  
+var onoff = 0;
+    
+    $(".dlBtn").click(function(){
+        if(onoff == 0) {
+            $(this).html("ON");
+            $(this).css({ 'background-color': 'green' });
+            $("progressBar").css({ 'width': '+=60%' });
+            onoff = 1;
+        }
+        else if(onoff == 1) {
+            $(this).html("OFF");
+            $(this).css({ 'background-color': 'gray' });
+            onoff = 0;
+        }
+    });
           
 }]);
 
-////calculate the time before calling the function in window.onload
-//var beforeload = (new Date()).getTime();
-//
-//function getPageLoadTime(){
-//        //calculate the current time in afterload
-//        var afterload = (new Date()).getTime();
-//        // now use the beforeload and afterload to calculate the seconds
-//        seconds = (afterload-beforeload) / 1000;
-//        // Place the seconds in the innerHTML to show the results
-//        $("#load_time").text('Page load time ::  ' + seconds + ' sec(s).');
-//}
-//
-//window.onload = getPageLoadTime;
+//calculate the time before calling the function in window.onload
+var beforeload = (new Date()).getTime();
+
+function getPageLoadTime(){
+        //calculate the current time in afterload
+        var afterload = (new Date()).getTime();
+        // now use the beforeload and afterload to calculate the seconds
+        seconds = (afterload-beforeload) / 1000;
+        // Place the seconds in the innerHTML to show the results
+        $("#load_time").text('Page load time ::  ' + seconds + ' sec(s).');
+}
+
+window.onload = getPageLoadTime;
