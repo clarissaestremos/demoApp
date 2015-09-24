@@ -63,11 +63,23 @@ myApp.config(function($routeProvider) {
 
 myApp.service('DataService', function($http, $q) {
     var self = this;
-  
+    var db = window.openDatabase("DB name",1, "Display name",200000);
+    
     self.getData = function(){
         var deferred = $q.defer(),
             url = 'https://glacial-harbor-7075.herokuapp.com/musicArtist/list';
         $http.get(url).success(function(result){
+             db.transaction(function(transaction){
+                transaction.executeSql("create table if not exists songArtist(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT)");
+                transaction.executeSql("select * from songArtist", [], function(transaction,res) {
+                   if (res.rows.length<1){ //first time to use the app
+                        for(d of result){
+                            transaction.executeSql("INSERT INTO songArtist (name, picture) values ('"+d.name+"', '"+d.picture+"')");
+                        }
+                      }
+                });
+             });
+            
             deferred.resolve(result);
         }).error(function(err){
             deferred.reject(err);     
@@ -92,17 +104,7 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',funct
     $scope.search_input="";
 
     DataService.getData().then(function(data) {
-            db.transaction(function(transaction){
-                
-                transaction.executeSql("create table if not exists songArtist(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT)");
-                transaction.executeSql("select * from songArtist", [], function(transaction, result) {
-
-                    
-                   if (result.rows.length<1){ //first time to use the app
-                        for(d of data){
-                            transaction.executeSql("INSERT INTO songArtist (name, picture) values ('"+d.name+"', '"+d.picture+"')");
-                        }
-                      }
+           
                     
                     $scope.$apply(function () {  
                         $scope.browseArtist = data;
@@ -117,11 +119,9 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',funct
                         } 
                       } 
                         
-                });
-            });
             
         }, function(reason) {
-            alert("No internet connection.");
+            alert("There something wrong in the server or the connection.");
         });  
     
     $scope.showData = function(){
@@ -150,8 +150,8 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',funct
         }, function(reason) {
             db.transaction(function(transaction){
                 transaction.executeSql("select * from songArtist", [], function(transaction, result) {
-                      
                         for (var i = 0; i < result.rows.length; i++) {
+                            
                           var row = result.rows.item(i);
                            $scope.$apply(function () {  
                                list.push(row);
