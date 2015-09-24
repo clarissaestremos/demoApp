@@ -348,7 +348,14 @@ body.has-active-menu {
     text-align: center;
 }
 
+/***************************/
+
+
 .inputBox {
     border-bottom: 1px solid #444444;
+}
 
+.contact-picture {
+    width: 150px;
+    height: 150px;
 }
