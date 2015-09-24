@@ -4,6 +4,20 @@ var myApp = angular.module('SteroidsApplication', [
 
 window.location.hash = "home";
 
+myApp.run(function($window, $rootScope) {
+      $rootScope.online = navigator.onLine;
+      $window.addEventListener("offline", function () {
+        $rootScope.$apply(function() {
+          $rootScope.online = false;
+        });
+      }, false);
+      $window.addEventListener("online", function () {
+        $rootScope.$apply(function() {
+          $rootScope.online = true;
+        });
+      }, false);
+});
+
 myApp.config(function($routeProvider) {
     
     $routeProvider
@@ -63,11 +77,23 @@ myApp.config(function($routeProvider) {
 
 myApp.service('DataService', function($http, $q) {
     var self = this;
-  
+    var db = window.openDatabase("DB name",1, "Display name",200000);
+    
     self.getData = function(){
         var deferred = $q.defer(),
             url = 'https://glacial-harbor-7075.herokuapp.com/musicArtist/list';
         $http.get(url).success(function(result){
+             db.transaction(function(transaction){
+                transaction.executeSql("create table if not exists songArtist(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT)");
+                transaction.executeSql("select * from songArtist", [], function(transaction,res) {
+                   if (res.rows.length<1){ //first time to use the app
+                        for(d of result){
+                            transaction.executeSql("INSERT INTO songArtist (name, picture) values ('"+d.name+"', '"+d.picture+"')");
+                        }
+                      }
+                });
+             });
+            
             deferred.resolve(result);
         }).error(function(err){
             deferred.reject(err);     
@@ -82,7 +108,7 @@ myApp.service('SearchService', function($http, $q) {
     var db = window.openDatabase("DB name",1, "Display name",200000);
     var self = this;
     
-    self.search= function(keyword) {
+    self.search= function(keyword, time) {
             
         
             var deferred = $q.defer();
@@ -98,7 +124,10 @@ myApp.service('SearchService', function($http, $q) {
                         
                     }
                     
-                    deferred.resolve(responses); //at the end of processing the responses
+                    var dt = new Date();
+                    var sec = dt.getMilliseconds() - time;
+                    
+                    deferred.resolve({response: responses, timer: sec}); //at the end of processing the responses
                     
                 },function(e){
                     alert("error!");
@@ -125,18 +154,8 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
 
     $scope.search_input="";
 
+    $scope.$watch('online', function(newStatus) {});
     DataService.getData().then(function(data) {
-            db.transaction(function(transaction){
-
-                transaction.executeSql("create table if not exists songArtist(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT)");
-                transaction.executeSql("select * from songArtist", [], function(transaction, result) {
-
-                    
-                   if (result.rows.length<1){ //first time to use the app
-                        for(d of data){
-                            transaction.executeSql("INSERT INTO songArtist (name, picture) values ('"+d.name+"', '"+d.picture+"')");
-                        }
-                      }
                     
                     $scope.$apply(function () {  
                         $scope.browseArtist = data;
@@ -151,36 +170,37 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
                         } 
                       } 
                         
-                });
-            });
             
         }, function(reason) {
-            alert("No internet connection.");
+            alert("There something wrong in the server or the connection.");
         });  
     
     $scope.search = function() {
-            
-            SearchService.search($scope.search_input).then(function(d) {
-                var dt = new Date();
-                var timer = dt.getMilliseconds();
-                $scope.timer = 0;
-                $scope.listOfArtist1 = d;
-                $scope.timer = timer;
+            var dt = new Date();
+            var timer = dt.getMilliseconds();
+            $scope.timer = 0;
+            SearchService.search($scope.search_input, timer).then(function(d) {
+                
+                $scope.listOfArtist1 = d.response;
+                var dt2 = new Date();
+                $scope.timer = d.timer;
                 $scope.numData1 = $scope.listOfArtist1.length;
             },function(e){alert(e.message);});
 
         }
     
     $("#btnClick").click(function(){
-        SearchService.search($scope.search_input).then(function(d) {
-                var dt = new Date();
-                var timer = dt.getMilliseconds();
-                $scope.timer = 0;
-                $scope.listOfArtist2 = d;
-                $scope.timer2 = timer;
+        var dt2 = new Date();
+        var timer2 = dt2.getMilliseconds();
+        $scope.timer2 = 0;
+        SearchService.search($scope.search_input, timer2).then(function(d) {
+                
+                $scope.listOfArtist2 = d.response;
+                $scope.timer2 = d.timer;
                 $scope.numData2 = $scope.listOfArtist2.length;
             },function(e){alert(e.message);});
     });
+
 var onoff = 0;
     
     $(".dlBtn").click(function(){
