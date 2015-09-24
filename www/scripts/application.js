@@ -51,8 +51,8 @@ myApp.config(function($routeProvider) {
     
 });
 
-myApp.service('DataService', function($http) {
-var self = this;
+myApp.service('DataService', function($http, $q) {
+    var self = this;
   
     self.getData = function(){
         var deferred = $q.defer(),
@@ -67,6 +67,7 @@ var self = this;
   return self;
 });
 
+<<<<<<< HEAD
 myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',function(supersonic, DataService,$scope) {
     
     var db = window.openDatabase("DB name",1, "Display name",200000);
