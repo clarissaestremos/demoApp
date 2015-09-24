@@ -9,28 +9,28 @@ myApp.config(function($routeProvider) {
     $routeProvider
    
     .when('/home', {
-        templateUrl: '../pages/index1.html',
+        templateUrl: 'pages/index1.html',
         controller: 'IndexController'
     })
       
     
     .when('/about', {
-        templateUrl: '../pages/about.html',
+        templateUrl: 'pages/about.html',
         controller: 'IndexController'
     })
     
     .when('/browse', {
-        templateUrl: '../pages/browse.html',
+        templateUrl: 'pages/browse.html',
         controller: 'IndexController'
     })
     
     .when('/search', {
-        templateUrl: '../pages/search.html',
+        templateUrl: 'pages/search.html',
         controller: 'IndexController'
     })
     
     .when('/contact', {
-        templateUrl: '../pages/contact.html',
+        templateUrl: 'pages/contact.html',
         controller: 'IndexController'
     })
     
@@ -91,14 +91,14 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope', func
         $scope.numData1 = $scope.listOfArtist1.length;
     }
     
-    document.getElementById("btnClick").addEventListener("click", function(){
+    /*document.getElementById("btnClick").addEventListener("click", function(){
         var dt = new Date();
         var timer2 = dt.getMilliseconds();
         $scope.timer2 = 0;
         $scope.listOfArtist2 = dataQueries(timer2);
         $scope.timer2 = timer2;
         $scope.numData2 = $scope.listOfArtist2.length;
-    });
+    });*/
     
     
     function dataQueries(timer){
@@ -124,7 +124,6 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope', func
 //                        } 
 //                      } 
 //                        
-//>>>>>>> b0607b9ba6a087aa736aa13f3483056d1d80879b
             list = data;
         }, function(reason) {
             db.transaction(function(transaction){
@@ -154,14 +153,3 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope', func
 
           
 }]);
-
-
-//
-//
-//=======
-//    $scope.search = function(){
-//        alert($scope.search_input);
-//    }
-//          
-//}]);
-//>>>>>>> b0607b9ba6a087aa736aa13f3483056d1d80879b
