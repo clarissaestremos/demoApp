@@ -1,32 +1,51 @@
-<div class="search-artist-container">
-    <h3>Search Artist:</h3>
-    <form novalidate class="simple-form">
-        <input class="inputBox" type="text" placeholder="artist" ng-model="search_input"/><i class="ion-ios-search"></i>
-        <!--<input type="submit" value="SEARCH" ng-click="search()"/>-->
-    </form>
 
-   <div id="container1">
-        <div id ="ngClick" ng-click="search()">Ng-click</div><br/>
-        <div>Fetched {{numData1}} data in {{timer}}ms</div><br/><br/>
-        <ul >
-          <li ng-repeat="item in listOfArtist1">
-            <p>ID: {{item.id}}</p>
-            <p>Name: {{item.name}} </p>
-            <p><img class="contentImg" src="{{item.picture}}"/> </p>
-
-          </li>
-        </ul>
+<div class="search-container">    
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon super-search placeholder-icon"></i>
+        <input type="text" placeholder="Search Artist" ng-model="search_input">
+      </label>
     </div>
+
+    <div class="row">
+        <div class="col">
+            <div id ="ngClick" class="button button-full button-positive" ng-click="search()">Ng-click</div><br/>
+            <div>Fetched {{numData1}} data in {{timer}}ms</div><br/>
+
+            <ul><li ng-repeat="item in listOfArtist1">    
+                <div class="card">
+                      <div class="item item-divider">
+                        <p>ID: {{item.id}}</p>
+                      </div>
+                      <div class="item item-text-wrap">
+                        <img src="{{item.picture}}">
+                      </div>
+                      <div class="item item-divider">
+                        <h4>{{item.name}}</h4>
+                      </div>
+                </div>
+            </li></ul>
+        </div>
     
-    <div id="container2">
-        <button id="btnClick">Button click</button><br/><br/>
-        <div>Fetched {{numData2}} data in {{timer2}}ms</div><br/><br/>
-        <ul >
-          <li ng-repeat="item in listOfArtist2">
-            <p>ID: {{item.id}}</p>
-            <p>Name: {{item.name}} </p>
-            <p><img class="contentImg" src="{{item.picture}}"/> </p>
-
-          </li>
-        </ul>
+    <div class="col">
+        <button id="btnClick" class="button button-full button-positive">Button click</button><br/>
+        <div>Fetched {{numData2}} data in {{timer2}}ms</div><br/>
+        <ul><li ng-repeat="item in listOfArtist2">    
+            <div class="card">
+                  <div class="item item-divider">
+                    <p>ID: {{item.id}}</p>
+                  </div>
+                  <div class="item item-text-wrap">
+                    <img src="{{item.picture}}">
+                  </div>
+                  <div class="item item-divider">
+                    <h4>{{item.name}}</h4>
+                  </div>
+            </div>
+        </li></ul>
     </div>
+
+    
+    </div>
+</div>    
+   
