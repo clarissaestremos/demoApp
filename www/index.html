@@ -20,12 +20,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
   <script src="/scripts/application.js"></script>
+    <script src="/scripts/route.js"></script>
+    <script src="/scripts/service.js"></script>
+    <script src="/scripts/controller.js"></script>
 </head>
     
 <body class="menu" ng-app="SteroidsApplication">
-    
+
     <div class="padding" ng-controller="IndexController">
-        
+
         <super-navbar>
           <super-navbar-title ng-bind="navbarTitle">
             <super-navbar-button side="left">
@@ -33,10 +36,6 @@
             </super-navbar-button>
         </super-navbar-title>
         </super-navbar>
-        <!--<header>
-            <button class="menu-toggle button icon super-navicon button-positive"></button>
-            <nav class="menu-side">This is a side menu</nav>
-        </header>-->
 
         <div id="o-wrapper" class="o-wrapper">
 

@@ -48,6 +48,12 @@
     color: #4D4D4D;
 }
 
+.search-container {
+    width: 118% !important;
+}
+.row{
+    width: 108% !important;
+}
 .command-btn {
     width: 250px;
 }
@@ -76,11 +82,11 @@ html, body {
 /******************************************************************************************************************************/
 /*                                                SUB NAVIGATION OBJECT                                                       */
 /******************************************************************************************************************************/
-.o-sub-nav {
+/*.o-sub-nav {
   margin: 0 0 24px 0;
   padding: 0;
-}
-
+}*/
+/*
 .o-sub-nav__items {
   display: -webkit-box;
   display: -webkit-flex;
@@ -120,7 +126,7 @@ html, body {
   .o-sub-nav {
     margin: 0 0 48px 0;
   }
-}
+}*/
 /******************************************************************************************************************************/
 /*                                                   FOOTER OBJECT                                                            */
 /******************************************************************************************************************************/
@@ -309,33 +315,30 @@ body.has-active-menu {
   cursor: not-allowed;
 }
 
-<<<<<<< HEAD
+.btn:active{
+    opacity: 0.3; 
+}
 
-#ngClick{
-    background-color: aquamarine;   
+#ngClick:active{
+   opacity: 0.3;   
 }
 
 /* -----------------------------------------------------------------------------
   CONTENT
 ----------------------------------------------------------------------------- */
 
-#container1, #container2{
+/*#container1, #container2{
     float: left;
-    padding: 5px;
     width: 50%;
     min-height: 80%;
-}
-
-#container1{
-    border-right: solid;   
-}
+}*/
 
 .contentImg{
     width: 50px;
     height: 50px;
 }
 
-.search-artist-container {
+/*.search-artist-container {
     height: 100px;
     width: 250px;
     margin-top: 30px;
@@ -347,7 +350,7 @@ body.has-active-menu {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-}
+}*/
 
 /***************************/
 
