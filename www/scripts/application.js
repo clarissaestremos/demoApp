@@ -4,6 +4,20 @@ var myApp = angular.module('SteroidsApplication', [
 
 window.location.hash = "home";
 
+myApp.run(function($window, $rootScope) {
+      $rootScope.online = navigator.onLine;
+      $window.addEventListener("offline", function () {
+        $rootScope.$apply(function() {
+          $rootScope.online = false;
+        });
+      }, false);
+      $window.addEventListener("online", function () {
+        $rootScope.$apply(function() {
+          $rootScope.online = true;
+        });
+      }, false);
+});
+
 myApp.config(function($routeProvider) {
     
     $routeProvider
@@ -89,9 +103,45 @@ myApp.service('DataService', function($http, $q) {
   return self;
 });
 
-
-myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',function(supersonic, DataService,$scope) {
+myApp.service('SearchService', function($http, $q) {
     
+    var db = window.openDatabase("DB name",1, "Display name",200000);
+    var self = this;
+    
+    self.search= function(keyword, time) {
+            
+        
+            var deferred = $q.defer();
+            db.transaction(function(transaction) {
+
+              var str="select * from songArtist where name like '%"+keyword+"%'";
+                
+                transaction.executeSql(str,[], function(transaction, result) {
+                    var responses = [];
+                    for (var i = 0; i < result.rows.length; i++) {
+                        
+                        responses.push(result.rows.item(i));
+                        
+                    }
+                    
+                    var dt = new Date();
+                    var sec = dt.getMilliseconds() - time;
+                    
+                    deferred.resolve({response: responses, timer: sec}); //at the end of processing the responses
+                    
+                },function(e){
+                    alert("error!");
+                });
+            });
+            
+            // Return the promise to the controller
+            return deferred.promise;
+    }
+    
+    return self;
+});
+
+myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','SearchService', function(supersonic, DataService, $scope, SearchService) {
 
     var db = window.openDatabase("DB name",1, "Display name",200000);
     
@@ -101,10 +151,11 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',funct
     $scope.listArtist2 = [];
     $scope.numData1 = 0;
     $scope.numData2 = 0;
+
     $scope.search_input="";
 
+    $scope.$watch('online', function(newStatus) {});
     DataService.getData().then(function(data) {
-           
                     
                     $scope.$apply(function () {  
                         $scope.browseArtist = data;
@@ -124,50 +175,32 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',funct
             alert("There something wrong in the server or the connection.");
         });  
     
-    $scope.showData = function(){
-        var dt = new Date();
-        var timer = dt.getMilliseconds();
-        $scope.timer = 0;
-        $scope.listOfArtist1 = dataQueries(timer);
-        $scope.timer = timer;
-        $scope.numData1 = $scope.listOfArtist1.length;
-    }
-    
+    $scope.search = function() {
+            var dt = new Date();
+            var timer = dt.getMilliseconds();
+            $scope.timer = 0;
+            SearchService.search($scope.search_input, timer).then(function(d) {
+                
+                $scope.listOfArtist1 = d.response;
+                var dt2 = new Date();
+                $scope.timer = d.timer;
+                $scope.numData1 = $scope.listOfArtist1.length;
+            },function(e){alert(e.message);});
 
+        }
+    
     $("#btnClick").click(function(){
-        var dt = new Date();
-        var timer2 = dt.getMilliseconds();
+        var dt2 = new Date();
+        var timer2 = dt2.getMilliseconds();
         $scope.timer2 = 0;
-        $scope.listOfArtist2 = dataQueries(timer2);
-        $scope.timer2 = timer2;
-        $scope.numData2 = $scope.listOfArtist2.length;
+        SearchService.search($scope.search_input, timer2).then(function(d) {
+                
+                $scope.listOfArtist2 = d.response;
+                $scope.timer2 = d.timer;
+                $scope.numData2 = $scope.listOfArtist2.length;
+            },function(e){alert(e.message);});
     });
 
-    function dataQueries(timer){
-
-        DataService.getData().then(function(data) { 
-            list = data;
-        }, function(reason) {
-            db.transaction(function(transaction){
-                transaction.executeSql("select * from songArtist", [], function(transaction, result) {
-                        for (var i = 0; i < result.rows.length; i++) {
-                            
-                          var row = result.rows.item(i);
-                           $scope.$apply(function () {  
-                               list.push(row);
-                            });
-                        }
-                });
-            });  
-        });
-
-        
-        var dt2 = new Date();
-        timer = (dt2.getMilliseconds() - timer)/1000;
-        return list;
-    }
-
-  
 var onoff = 0;
     
     $(".dlBtn").click(function(){
