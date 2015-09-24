@@ -57,31 +57,6 @@
 
     <div id="c-mask" class="c-mask"></div><!-- /c-mask -->
 
-     <div id="container1">
-        <div id ="ngClick" ng-click="showData()">Ng-click</div><br/>
-        <div>Fetched {{numData1}} data in {{timer}}ms</div><br/><br/>
-        <ul >
-          <li ng-repeat="item in listOfArtist1">
-            <p>ID: {{item.id}}</p>
-            <p>Name: {{item.name}} </p>
-            <p><img class="contentImg" src="{{item.picture}}"/> </p>
-
-          </li>
-        </ul>
-    </div>
-    
-    <div id="container2">
-        <button id="btnClick">Button click</button><br/><br/>
-        <div>Fetched {{numData2}} data in {{timer2}}ms</div><br/><br/>
-        <ul >
-          <li ng-repeat="item in listOfArtist2">
-            <p>ID: {{item.id}}</p>
-            <p>Name: {{item.name}} </p>
-            <p><img class="contentImg" src="{{item.picture}}"/> </p>
-
-          </li>
-        </ul>
-    </div>
     <div ng-view></div>
 
     <script src="/scripts/menu.js"></script>
@@ -99,12 +74,6 @@
             e.preventDefault;
             slideLeft.open();
           });
-        
-          /*linkBtn.addEventListener('click', function(e) {
-            alert("hello");
-              e.preventDefault;
-            slideLeft.close();
-          });*/
         
         function closing(){
             slideLeft.close();

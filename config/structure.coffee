@@ -8,7 +8,7 @@ module.exports =
   drawers:
     right:
       id: "leftDrawer"
-      location: "www#drawer"
+      location: "http://localhost/drawer.html"
       showOnAppLoad: false
     options:
       animation: "swingingDoor"

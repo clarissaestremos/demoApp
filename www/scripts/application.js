@@ -9,28 +9,28 @@ myApp.config(function($routeProvider) {
     $routeProvider
    
     .when('/home', {
-        templateUrl: '../pages/index1.html',
+        templateUrl: 'pages/index1.html',
         controller: 'IndexController'
     })
       
     
     .when('/about', {
-        templateUrl: '../pages/about.html',
+        templateUrl: 'pages/about.html',
         controller: 'IndexController'
     })
     
     .when('/browse', {
-        templateUrl: '../pages/browse.html',
+        templateUrl: 'pages/browse.html',
         controller: 'IndexController'
     })
     
     .when('/search', {
-        templateUrl: '../pages/search.html',
+        templateUrl: 'pages/search.html',
         controller: 'IndexController'
     })
     
     .when('/contact', {
-        templateUrl: '../pages/contact.html',
+        templateUrl: 'pages/contact.html',
         controller: 'IndexController'
     })
     
@@ -52,7 +52,7 @@ myApp.service('DataService', function($http, $q) {
   return self;
 });
 
-myApp.controller('IndexController', ['supersonic', 'DataService', '$scope', function(supersonic, DataService, $scope) {
+myApp.controller('IndexController', ['supersonic', 'DataService', '$scope', '$rootScope', function(supersonic, DataService, $scope, $rootScope) {
 
     var db = window.openDatabase("DB name",1, "Display name",200000);
 
@@ -91,7 +91,7 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope', func
         $scope.numData1 = $scope.listOfArtist1.length;
     }
     
-    document.getElementById("btnClick").addEventListener("click", function(){
+    $("#btnClick").click(function(){
         var dt = new Date();
         var timer2 = dt.getMilliseconds();
         $scope.timer2 = 0;
@@ -99,32 +99,10 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope', func
         $scope.timer2 = timer2;
         $scope.numData2 = $scope.listOfArtist2.length;
     });
-    
-    
-    function dataQueries(timer){
-//
-//    $scope.listArtist = [];
-//    $scope.search_input="";
-//
 
-        DataService.getData().then(function(data) {
-//            db.transaction(function(transaction){
-//                        $scope.$apply(function () {  
-//                            $scope.listArtist = data;
-//                        });
-//                        
-//                        var nativeJavascriptListArtist = data;
-//                        var ul = document.getElementById("nativeAddArtist");
-//                        var li = document.createElement("li");
-//                        
-//                      for (var p in nativeJavascriptListArtist) {
-//                        if( nativeJavascriptListArtist.hasOwnProperty(p) ) {
-//                          li.appendChild(document.createTextNode(nativeJavascriptListArtist[p].name));
-//                          ul.appendChild(li);
-//                        } 
-//                      } 
-//                        
-//>>>>>>> b0607b9ba6a087aa736aa13f3483056d1d80879b
+    function dataQueries(timer){
+
+        DataService.getData().then(function(data) { 
             list = data;
         }, function(reason) {
             db.transaction(function(transaction){
@@ -145,6 +123,8 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope', func
         timer = (dt2.getMilliseconds() - timer)/1000;
         return list;
     }
+    
+    
 
 //          db.transaction(function(transaction){
 //        transaction.executeSql("drop table if exists songArtist",[],function(transaction,result){
@@ -154,14 +134,3 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope', func
 
           
 }]);
-
-
-//
-//
-//=======
-//    $scope.search = function(){
-//        alert($scope.search_input);
-//    }
-//          
-//}]);
-//>>>>>>> b0607b9ba6a087aa736aa13f3483056d1d80879b
