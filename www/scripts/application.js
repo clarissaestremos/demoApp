@@ -52,7 +52,42 @@ myApp.service('DataService', function($http, $q) {
   return self;
 });
 
-myApp.controller('IndexController', ['supersonic', 'DataService', '$scope', function(supersonic, DataService, $scope) {
+myApp.service('SearchService', function($http, $q) {
+    
+    var db = window.openDatabase("DB name",1, "Display name",200000);
+    var self = this;
+    
+    self.search= function(keyword) {
+            
+        
+            var deferred = $q.defer();
+            db.transaction(function(transaction) {
+
+              var str="select * from songArtist where name like '%"+keyword+"%'";
+                
+                transaction.executeSql(str,[], function(transaction, result) {
+                    var responses = [];
+                    for (var i = 0; i < result.rows.length; i++) {
+                        
+                        responses.push(result.rows.item(i));
+                        
+                    }
+                    
+                    deferred.resolve(responses); //at the end of processing the responses
+                    
+                },function(e){
+                    alert("error!");
+                });
+            });
+            
+            // Return the promise to the controller
+            return deferred.promise;
+    }
+    
+    return self;
+});
+
+myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','SearchService', function(supersonic, DataService, $scope, SearchService) {
 
     var db = window.openDatabase("DB name",1, "Display name",200000);
 
@@ -61,10 +96,11 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope', func
     $scope.listOfArtist2 = [];
     $scope.numData1 = 0;
     $scope.numData2 = 0;
+    $scope.search_input = "";
  
      DataService.getData().then(function(data) {
             db.transaction(function(transaction){
-                
+
                 transaction.executeSql("create table if not exists songArtist(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT)");
                 transaction.executeSql("select * from songArtist", [], function(transaction, result) {
 
@@ -91,6 +127,19 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope', func
         $scope.numData1 = $scope.listOfArtist1.length;
     }
     
+    $scope.search = function() {
+            
+            SearchService.search($scope.search_input).then(function(d) {
+                var dt = new Date();
+                var timer = dt.getMilliseconds();
+                $scope.timer = 0;
+                $scope.listOfArtist1 = d;
+                $scope.timer = timer;
+                $scope.numData1 = $scope.listOfArtist1.length;
+            },function(e){alert(e.message);});
+
+        }
+    
     /*document.getElementById("btnClick").addEventListener("click", function(){
         var dt = new Date();
         var timer2 = dt.getMilliseconds();
@@ -102,33 +151,13 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope', func
     
     
     function dataQueries(timer){
-//
-//    $scope.listArtist = [];
-//    $scope.search_input="";
-//
+
 
         DataService.getData().then(function(data) {
-//            db.transaction(function(transaction){
-//                        $scope.$apply(function () {  
-//                            $scope.listArtist = data;
-//                        });
-//                        
-//                        var nativeJavascriptListArtist = data;
-//                        var ul = document.getElementById("nativeAddArtist");
-//                        var li = document.createElement("li");
-//                        
-//                      for (var p in nativeJavascriptListArtist) {
-//                        if( nativeJavascriptListArtist.hasOwnProperty(p) ) {
-//                          li.appendChild(document.createTextNode(nativeJavascriptListArtist[p].name));
-//                          ul.appendChild(li);
-//                        } 
-//                      } 
-//                        
             list = data;
         }, function(reason) {
             db.transaction(function(transaction){
                 transaction.executeSql("select * from songArtist", [], function(transaction, result) {
-                      
                         for (var i = 0; i < result.rows.length; i++) {
                           var row = result.rows.item(i);
                            $scope.$apply(function () {  

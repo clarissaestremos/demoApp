@@ -3,10 +3,10 @@
     <h3>Search Artist:</h3>
     <form novalidate class="simple-form">
         <input class="inputBox" type="text" placeholder="artist" ng-model="search_input"/><i class="ion-ios-search"></i>
-        <input type="submit" value="SEARCH" ng-click="search()"/>
+        <!--<input type="submit" value="SEARCH" ng-click="search()"/>-->
     </form>
    <div id="container1">
-        <div id ="ngClick" ng-click="showData()">Ng-click</div><br/>
+        <div id ="ngClick" ng-click="search()">Ng-click</div><br/>
         <div>Fetched {{numData1}} data in {{timer}}ms</div><br/><br/>
         <ul >
           <li ng-repeat="item in listOfArtist1">
