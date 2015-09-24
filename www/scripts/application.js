@@ -67,7 +67,6 @@ myApp.service('DataService', function($http, $q) {
   return self;
 });
 
-<<<<<<< HEAD
 myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',function(supersonic, DataService,$scope) {
     
     var db = window.openDatabase("DB name",1, "Display name",200000);
@@ -146,16 +145,16 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',funct
           
 }]);
 
-//calculate the time before calling the function in window.onload
-var beforeload = (new Date()).getTime();
-
-function getPageLoadTime(){
-        //calculate the current time in afterload
-        var afterload = (new Date()).getTime();
-        // now use the beforeload and afterload to calculate the seconds
-        seconds = (afterload-beforeload) / 1000;
-        // Place the seconds in the innerHTML to show the results
-        $("#load_time").text('Page load time ::  ' + seconds + ' sec(s).');
-}
-
-window.onload = getPageLoadTime;
+////calculate the time before calling the function in window.onload
+//var beforeload = (new Date()).getTime();
+//
+//function getPageLoadTime(){
+//        //calculate the current time in afterload
+//        var afterload = (new Date()).getTime();
+//        // now use the beforeload and afterload to calculate the seconds
+//        seconds = (afterload-beforeload) / 1000;
+//        // Place the seconds in the innerHTML to show the results
+//        $("#load_time").text('Page load time ::  ' + seconds + ' sec(s).');
+//}
+//
+//window.onload = getPageLoadTime;
