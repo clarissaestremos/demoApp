@@ -25,18 +25,18 @@
 <body class="menu" ng-app="SteroidsApplication">
     
     <div class="padding" ng-controller="IndexController">
-
+        
         <super-navbar>
-          <super-navbar-title>HELLO</super-navbar-title>
+          <super-navbar-title ng-bind="navbarTitle">
+            <super-navbar-button side="left">
+                Right
+            </super-navbar-button>
+        </super-navbar-title>
         </super-navbar>
         <!--<header>
             <button class="menu-toggle button icon super-navicon button-positive"></button>
             <nav class="menu-side">This is a side menu</nav>
         </header>-->
-
-        <super-navbar>
-          <super-navbar-title>YO</super-navbar-title>
-        </super-navbar>
 
         <div id="o-wrapper" class="o-wrapper">
 
@@ -52,12 +52,12 @@
         <nav id="c-menu--slide-left" class="c-menu c-menu--slide-left">
           <button class="c-menu__close">&larr; Close Menu</button>
           <ul class="c-menu__items">
-            <li class="c-menu__item"><a class="c-menu__link" href="#/home" onclick="closing()">Home</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/about" onclick="closing()">About</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/browse" onclick="closing()">Browse</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/search" onclick="closing()">Search</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/contact" onclick="closing()">Contact</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/favorite" onclick="closing()">My Favorites</a></li>
+            <li class="c-menu__item"><a class="c-menu__link" href="#/home" ng-click="changeToHome()" onclick="closing()">Home</a></li>
+            <li class="c-menu__item"><a class="c-menu__link" href="#/about" ng-click="changeToAbout()" onclick="closing()">About</a></li>
+            <li class="c-menu__item"><a class="c-menu__link" href="#/browse" ng-click="changeToBrowse()" onclick="closing()">Browse</a></li>
+            <li class="c-menu__item"><a class="c-menu__link" href="#/search" ng-click="changeToSearch()" onclick="closing()">Search</a></li>
+            <li class="c-menu__item"><a class="c-menu__link" href="#/contact" ng-click="changeToContact()" onclick="closing()">Contact</a></li>
+            <li class="c-menu__item"><a class="c-menu__link" href="#/favorite" ng-click="changeToFavorite()" onclick="closing()">My Favorites</a></li>
           </ul>
         </nav><!-- /c-menu slide-left -->
 

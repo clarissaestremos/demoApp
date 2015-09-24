@@ -79,7 +79,26 @@ myApp.service('DataService', function($http, $q) {
 
 myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',function(supersonic, DataService,$scope) {
     
-    var db = window.openDatabase("DB name",1, "Display name",200000);
+      $scope.navbarTitle = "Home";
+    
+      $scope.changeToHome = function() {
+          $scope.navbarTitle = "Home";
+      };
+      $scope.changeToAbout = function() {
+          $scope.navbarTitle = "About";
+      };
+      $scope.changeToBrowse = function() {
+          $scope.navbarTitle = "Browse";
+      };
+      $scope.changeToSearch = function() {
+          $scope.navbarTitle = "Search";
+      };
+      $scope.changeToContact = function() {
+          $scope.navbarTitle = "Contact";
+      };
+      $scope.changeToFavorite = function() {
+          $scope.navbarTitle = "Favorite";
+      };
     
     var list = [];
     $scope.browseArtist = [];
@@ -111,7 +130,7 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope',funct
 
                     for (var p in nativeJavascriptListArtist) {
                         if( nativeJavascriptListArtist.hasOwnProperty(p) ) {
-                          ul.innerHTML += "<li>"+"<img src='"+nativeJavascriptListArtist[p].picture+"'/><br>"+nativeJavascriptListArtist[p].name+"</li>";
+                          ul.innerHTML += "<li>"+"<a class='item item-thumbnail-left'><img src='"+nativeJavascriptListArtist[p].picture+"'/><h2>"+nativeJavascriptListArtist[p].name+"</h2></li>";
                         } 
                       } 
                         

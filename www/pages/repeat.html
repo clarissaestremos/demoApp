@@ -1,7 +1,13 @@
 DANICA LIST NG-REPEAT
 
-<div class="ngRepeat-container">
+<div class="list" >
     <ul>
-       <li ng-repeat="artist in browseArtist"><img src="{{artist.picture}}"/><br>{{artist.name}}</li> 
+        <li ng-repeat="artist in browseArtist">
+            <a class="item item-thumbnail-left">
+              <img src="{{artist.picture}}">
+              <h2>{{artist.name}}</h2>
+            </a>
+        </li>
     </ul>
+
 </div>
