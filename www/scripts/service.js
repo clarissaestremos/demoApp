@@ -32,7 +32,7 @@ myApp.service('SearchService', function($http, $q) {
     var db = window.openDatabase("DB name",1, "Display name",200000);
     var self = this;
     
-    self.search= function(keyword, time) {
+    self.search= function(keyword, timeMS, timeS) {
             
         
             var deferred = $q.defer();
@@ -49,7 +49,11 @@ myApp.service('SearchService', function($http, $q) {
                     }
                     
                     var dt = new Date();
-                    var sec = dt.getMilliseconds() - time;
+                    var ms = dt.getMilliseconds()/1000;
+                    var s = dt.getSeconds();
+                    var totalSec1 = timeMS + timeS;
+                    var totalSec2 = ms + s;
+                    var sec = totalSec2 - totalSec1;
                     
                     deferred.resolve({response: responses, timer: sec}); //at the end of processing the responses
                     

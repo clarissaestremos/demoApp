@@ -315,9 +315,13 @@ body.has-active-menu {
   cursor: not-allowed;
 }
 
-/*#ngClick{
-    background-color: aquamarine;   
-}*/
+.btn:active{
+    opacity: 0.3; 
+}
+
+#ngClick:active{
+   opacity: 0.3;   
+}
 
 /* -----------------------------------------------------------------------------
   CONTENT

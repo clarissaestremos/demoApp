@@ -34,13 +34,14 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     
     $scope.search = function() {
             var dt = new Date();
-            var timer = dt.getMilliseconds();
+            var timerMilliSec = dt.getMilliseconds()/1000;
+            var timerSec = dt.getSeconds();
             $scope.timer = 0;
-            SearchService.search($scope.search_input, timer).then(function(d) {
+            SearchService.search($scope.search_input, timerMilliSec, timerSec).then(function(d) {
                 
                 $scope.listOfArtist1 = d.response;
                 var dt2 = new Date();
-                $scope.timer = d.timer;
+                $scope.timer = d.timer.toFixed(2);
                 $scope.numData1 = $scope.listOfArtist1.length;
             },function(e){alert(e.message);});
 
@@ -48,12 +49,13 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     
     $("#btnClick").click(function(){
         var dt2 = new Date();
-        var timer2 = dt2.getMilliseconds();
+        var timerMilliSec2 = dt2.getMilliseconds()/1000;
+        var timerSec2 = dt2.getSeconds();
         $scope.timer2 = 0;
-        SearchService.search($scope.search_input, timer2).then(function(d) {
+        SearchService.search($scope.search_input, timerMilliSec2, timerSec2).then(function(d) {
                 
                 $scope.listOfArtist2 = d.response;
-                $scope.timer2 = d.timer;
+                $scope.timer2 = d.timer.toFixed(2);
                 $scope.numData2 = $scope.listOfArtist2.length;
             },function(e){alert(e.message);});
     });
