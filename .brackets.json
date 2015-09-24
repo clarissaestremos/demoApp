@@ -13,9 +13,15 @@
         "C:/Users/IDEYATECH/Desktop/demoApp/dist/scripts/application.js",
         "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/webcomponents.min.js",
         "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/webcomponents.js",
+<<<<<<< HEAD
         "C:/Users/User/Desktop/try/demoApp/dist/components/webcomponentsjs/webcomponents.min.js",
         "C:/Users/User/Desktop/try/demoApp/dist/components/angular/angular.min.js",
         "C:/Users/User/Desktop/try/demoApp/dist/components/webcomponentsjs/webcomponents.js",
         "C:/Users/User/Desktop/try/demoApp/dist/components/webcomponentsjs/webcomponents-lite.min.js"
+=======
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/webcomponents-lite.min.js",
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/webcomponents-lite.js"
+
+>>>>>>> d7ea68a532763aaad924f00c7558a6c2cd80c217
     ]
 }
