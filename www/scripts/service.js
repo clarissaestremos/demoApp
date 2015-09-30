@@ -13,7 +13,7 @@ myApp.service('DataService', function($http, $q) {
                  
                 transaction.executeSql("create table if not exists songArtist(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT)",[],function(){console.log("created");},function(){console.log("error create");});
                 transaction.executeSql("select * from songArtist", [], function(transaction,res) {
-                    alert(res.rows.length);
+                    /*alert(res.rows.length);*/
                     if (res.rows.length<1){ //first time to use the app
                     transaction.executeSql("CREATE VIRTUAL TABLE artistsearch USING fts3(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT);");         
                         for(d of result){
@@ -23,7 +23,7 @@ myApp.service('DataService', function($http, $q) {
                             }
                             console.log("insert");
                             transaction.executeSql("INSERT INTO songArtist (name, picture) values ('"+d.name+"', '"+d.picture+"')");
-                            transaction.executeSql("INSERT INTO artistsearch (name, picture) values ('"+d.name+"', '"+d.picture+"')");
+                            transaction.executeSql("INSERT INTO artistsearch (id, name, picture) values ("+d.id+",'"+d.name+"', '"+d.picture+"')");
                         }
                                               }
                 });
@@ -85,6 +85,7 @@ myApp.service('SearchService', function($http, $q) {
                     for (var i = 0; i < result.rows.length; i++) {
                         
                         responses.push(result.rows.item(i));
+                        console.log(result.rows.item(i).id);
                         
                     }
                     
