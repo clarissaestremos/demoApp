@@ -1,4 +1,8 @@
 myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','SearchService', function(supersonic, DataService, $scope, SearchService) {
+    
+    
+   
+  
 
     var db = window.openDatabase("DB name",1, "Display name",200000);
     
@@ -32,32 +36,36 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
             alert("There something wrong in the server or the connection.");
         });  
     
-    $scope.search = function() {
-            var dt = new Date();
-            var timerMilliSec = dt.getMilliseconds()/1000;
-            var timerSec = dt.getSeconds();
-            $scope.timer = 0;
-            SearchService.search($scope.search_input, timerMilliSec, timerSec).then(function(d) {
-                
-                $scope.listOfArtist1 = d.response;
-                var dt2 = new Date();
-                $scope.timer = d.timer.toFixed(2);
-                $scope.numData1 = $scope.listOfArtist1.length;
-            },function(e){alert(e.message);});
-
-        }
+    $scope.sample = function(){
+        $scope.data1 = "Data1";   
+        
+    }
     
-    $("#btnClick").click(function(){
-        var dt2 = new Date();
-        var timerMilliSec2 = dt2.getMilliseconds()/1000;
-        var timerSec2 = dt2.getSeconds();
-        $scope.timer2 = 0;
-        SearchService.search($scope.search_input, timerMilliSec2, timerSec2).then(function(d) {
-                
-                $scope.listOfArtist2 = d.response;
-                $scope.timer2 = d.timer.toFixed(2);
-                $scope.numData2 = $scope.listOfArtist2.length;
-            },function(e){alert(e.message);});
+    $scope.touchStart = function() {
+        $scope.timer1 = Date.now();
+    }
+
+    $scope.touchEnd = function() {
+        $scope.timer1 = Date.now() - $scope.timer1;
+    }
+    
+    var timer2;
+    $("#btnClick").on('touchstart',function(e){
+//         $scope.$apply(function () {  
+            timer2 = Date.now();
+//        });
+    }).on('touchend',function(e){
+//        $scope.$apply(function () {  
+           timer2 = Date.now() - timer2;
+            document.getElementById("delay").innerHTML = "Delay: "+timer2+"ms";
+//        });
+    });
+    
+    $("#btnClick").on('click',function(e){
+//        $scope.$apply(function () {  
+//            $scope.data2 = "Data2";
+//        });
+         document.getElementById("data").innerHTML = "Data2" ;
     });
 
 var onoff = 0;
@@ -78,3 +86,41 @@ var onoff = 0;
 
           
 }]);
+
+myApp.directive('testDirective', [function() {
+                return function(scope, element, attr) {
+
+                    element.on('touchstart', function(event) {
+                        scope.$apply(function() { 
+                            scope.$eval(attr.testDirective); 
+                        });
+                    });
+                    
+                    element.on('touchend', function(event) {
+                        scope.$apply(function() { 
+                           scope.$eval(attr.touchEnd); 
+                        });
+                    });
+                };
+            }]);
+//myApp.directive('myTouchstart', [function() {
+//                return function(scope, element, attr) {
+//
+//                    element.on('touchstart', function(event) {
+//                        scope.$apply(function() { 
+//                            scope.$eval(attr.myTouchstart); 
+//                        });
+//                    });
+//                };
+//            }]);
+//
+//myApp.directive('myTouchend', [function() {
+//                return function(scope, element, attr) {
+//
+//                    element.on('touchend', function(event) {
+//                        scope.$apply(function() { 
+//                             scope.$eval(attr.myTouchend); 
+//                        });
+//                    });
+//                };
+//            }]);

@@ -15,6 +15,11 @@
         "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/webcomponents.js",
         "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/webcomponents-lite.min.js",
         "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/webcomponents-lite.js",
-        "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/ShadowDOM.min.js"
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/ShadowDOM.min.js",
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/scripts/service.js",
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/scripts/route.js",
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/scripts/controller.js",
+        "C:/Users/IDEYATECH/Desktop/demoApp/www/scripts/service.js",
+        "C:/Users/IDEYATECH/Desktop/demoApp/dist/components/webcomponentsjs/ShadowDOM.js"
     ]
 }

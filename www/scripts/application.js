@@ -1,22 +1,24 @@
+
+
 var myApp = angular.module('SteroidsApplication', [
   'supersonic', 'ngRoute'
 ]);
 
 window.location.hash = "home";
 
-myApp.run(function($window, $rootScope) {
-      $rootScope.online = navigator.onLine;
-      $window.addEventListener("offline", function () {
-        $rootScope.$apply(function() {
-          $rootScope.online = false;
-        });
-      }, false);
-      $window.addEventListener("online", function () {
-        $rootScope.$apply(function() {
-          $rootScope.online = true;
-        });
-      }, false);
-});
+//myApp.run(function($window, $rootScope) {
+//      $rootScope.online = navigator.onLine;
+//      $window.addEventListener("offline", function () {
+//        $rootScope.$apply(function() {
+//          $rootScope.online = false;
+//        });
+//      }, false);
+//      $window.addEventListener("online", function () {
+//        $rootScope.$apply(function() {
+//          $rootScope.online = true;
+//        });
+//      }, false);
+//});
 
 //calculate the time before calling the function in window.onload
 var beforeload = (new Date()).getTime();

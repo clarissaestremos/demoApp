@@ -2,8 +2,9 @@ CONTACT
 
 <br>
 
-<div class="contact-container">
+<div class="contact-container" >
     
+<!--
     <button class="btn">Picture</button><button class="btn">Contact Details</button><button class="btn">Role</button>
     
     <img src="sprite.png" class="contact-picture"/>
@@ -19,7 +20,12 @@ CONTACT
     <style>
         $("#car").css({'color': 'red'});
     </style>
-    
+-->
+    <div id ="ngClick" class="button button-full button-positive" ng-click="sample()" test-directive="touchStart()" touch-end = "touchEnd()">Ng-click</div><br/>
+    <div>Delay: {{timer1}}ms</div><br/>
+    <div>Data: {{data1}}</div><br/>
+    <button id ="btnClick" class="btn button button-full button-positive">Button click</button><br/>
+    <div id="delay"></div><br/>
+    <div id="data"></div><br/>
 </div>
 
-MEET THE DEVELOPERS
