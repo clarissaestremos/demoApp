@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> b93bc9e89bca64118ee2f71255fb09a9273d9718
 myApp.service('DataService', function($http, $q) {
     var self = this;
     var db = window.openDatabase("DB name",1, "Display name",200000);
@@ -47,11 +43,7 @@ myApp.service('SearchService', function($http, $q) {
     var db = window.openDatabase("DB name",1, "Display name",200000);
     var self = this;
     
-<<<<<<< HEAD
-    self.search= function(keyword, time) {
-=======
-    self.search= function(keyword, timeMS, timeS) {
->>>>>>> b93bc9e89bca64118ee2f71255fb09a9273d9718
+    self.search= function(keyword) {
             
         
             var deferred = $q.defer();
@@ -61,17 +53,13 @@ myApp.service('SearchService', function($http, $q) {
                 
                 transaction.executeSql(str,[], function(transaction, result) {
                     var responses = [];
-<<<<<<< HEAD
                     if(result.rows.length<1){console.log("No result");}
-=======
->>>>>>> b93bc9e89bca64118ee2f71255fb09a9273d9718
                     for (var i = 0; i < result.rows.length; i++) {
                         
                         responses.push(result.rows.item(i));
                         
                     }
-                    
-<<<<<<< HEAD
+            
                     deferred.resolve({response: responses}); //at the end of processing the responses
                     
                 },function(e){
@@ -83,7 +71,7 @@ myApp.service('SearchService', function($http, $q) {
             return deferred.promise;
     }
     
-    self.searchFTS= function(keyword, time) {
+    self.searchFTS= function(keyword) {
             
         
             var deferred = $q.defer();
@@ -104,19 +92,6 @@ myApp.service('SearchService', function($http, $q) {
                     
                 },function(e){
                     alert(e.message);
-=======
-                    var dt = new Date();
-                    var ms = dt.getMilliseconds()/1000;
-                    var s = dt.getSeconds();
-                    var totalSec1 = timeMS + timeS;
-                    var totalSec2 = ms + s;
-                    var sec = totalSec2 - totalSec1;
-                    
-                    deferred.resolve({response: responses, timer: sec}); //at the end of processing the responses
-                    
-                },function(e){
-                    alert("error!");
->>>>>>> b93bc9e89bca64118ee2f71255fb09a9273d9718
                 });
             });
             

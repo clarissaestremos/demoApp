@@ -33,7 +33,6 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
         });  
     
     $scope.search = function() {
-<<<<<<< HEAD
             SearchService.search($scope.search_input).then(function(d) {
                 
                 $scope.listOfArtist1 = d.response;
@@ -60,21 +59,7 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
                 $scope.numData2 = $scope.listOfArtist2.length;
             },function(e){alert(e.message);});
     }
-=======
-            var dt = new Date();
-            var timerMilliSec = dt.getMilliseconds()/1000;
-            var timerSec = dt.getSeconds();
-            $scope.timer = 0;
-            SearchService.search($scope.search_input, timerMilliSec, timerSec).then(function(d) {
-                
-                $scope.listOfArtist1 = d.response;
-                var dt2 = new Date();
-                $scope.timer = d.timer.toFixed(2);
-                $scope.numData1 = $scope.listOfArtist1.length;
-            },function(e){alert(e.message);});
 
-        }
->>>>>>> b93bc9e89bca64118ee2f71255fb09a9273d9718
     
     $("#btnClick").click(function(){
         var dt2 = new Date();
