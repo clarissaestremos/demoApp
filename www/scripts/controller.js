@@ -10,7 +10,10 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     $scope.numData2 = 0;
     $scope.searchClicked = false;
     $scope.searchFTSClicked = false;
-
+    $scope.pages1=0;
+    $scope.pages2=0;
+    $scope.showButton=false;
+    $scope.showButtonFTS=false;
     $scope.search_input="";
 
     $scope.$watch('online', function(newStatus) {});
@@ -34,18 +37,19 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
             alert("There something wrong in the server or the connection.");
         });  
     
-    $scope.pages1=10;
-    $scope.pages2=10;
-    $scope.showButton=false;
-    $scope.showButtonFTS=false;
-    
     $scope.search = function() {
             SearchService.search($scope.search_input).then(function(d) {
-                $scope.searchClicked = true;
                 $scope.listOfArtist = d.response;
+                var length = $scope.listOfArtist.length;
+                $scope.pages1 = 10;
+                $scope.showButton=false;
+                if(length<$scope.pages1)
+                    $scope.pages1=length;
+                $scope.searchClicked = true;
+                
                 $scope.listOfArtist1= $scope.listOfArtist.slice(0,$scope.pages1);
-                $scope.numData1 = $scope.listOfArtist.length;
-                $scope.numDataMore = $scope.listOfArtist.length-$scope.pages1;
+                $scope.numData1 = length;
+                $scope.numDataMore = length-$scope.pages1;
                 if($scope.numDataMore>0)
                     $scope.showButton=true;
                 
@@ -66,30 +70,21 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     
     $scope.searchFTS = function(){
         SearchService.searchFTS($scope.search_input).then(function(d) {
-                $scope.searchFTSClicked = true;
                 $scope.listOfArtistFTS = d.response;
+                var length = $scope.listOfArtistFTS.length;
+                $scope.showButtonFTS=false;
+                $scope.pages2 = 10;
+                if(length<$scope.pages2)
+                    $scope.pages2=length;
+                $scope.searchFTSClicked = true;
                 $scope.listOfArtist2= $scope.listOfArtistFTS.slice(0,$scope.pages2);
-                $scope.numData2 = $scope.listOfArtistFTS.length;
-                $scope.numDataMore2 = $scope.listOfArtistFTS.length-$scope.pages2;
+                $scope.numData2 = length;
+                $scope.numDataMore2 = length-$scope.pages2;
                 if($scope.numDataMore2>0)
                     $scope.showButtonFTS=true;
                 
             },function(e){alert(e.message);});
     }
-
-    
-    $("#btnClick").click(function(){
-        var dt2 = new Date();
-        var timerMilliSec2 = dt2.getMilliseconds()/1000;
-        var timerSec2 = dt2.getSeconds();
-        $scope.timer2 = 0;
-        SearchService.search($scope.search_input, timerMilliSec2, timerSec2).then(function(d) {
-                
-                $scope.listOfArtist2 = d.response;
-                $scope.timer2 = d.timer.toFixed(2);
-                $scope.numData2 = $scope.listOfArtist2.length;
-            },function(e){alert(e.message);});
-    });
 
 var onoff = 0;
     

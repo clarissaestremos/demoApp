@@ -53,7 +53,6 @@ myApp.service('SearchService', function($http, $q) {
                 
                 transaction.executeSql(str,[], function(transaction, result) {
                     var responses = [];
-                    if(result.rows.length<1){console.log("No result");}
                     for (var i = 0; i < result.rows.length; i++) {
                         
                         responses.push(result.rows.item(i));
@@ -80,7 +79,7 @@ myApp.service('SearchService', function($http, $q) {
               var str="select * from artistsearch where name match '"+keyword+"'";
                 
                 transaction.executeSql(str,[], function(transaction, result) {
-                    if(result.rows.length<1){console.log("No result");}
+                    
                     var responses = [];
                     for (var i = 0; i < result.rows.length; i++) {
                         
