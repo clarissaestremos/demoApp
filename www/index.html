@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="/components/supersonic/css/supersonic.css">
   <link rel="stylesheet" href="/stylesheets/application.css">
   <link rel="import" href="/components/supersonic/components/import.html">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://localhost/cordova.js"></script>
   <script src="/components/steroids-js/steroids.js"></script>
@@ -17,74 +16,44 @@
   <script src="/components/supersonic/supersonic.js"></script>
   <script src="/components/webcomponentsjs/webcomponents.js"></script>
   <script src="https://code.angularjs.org/1.3.0-rc.1/angular-route.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
   <script src="/scripts/application.js"></script>
-    <script src="/scripts/route.js"></script>
-    <script src="/scripts/service.js"></script>
-    <script src="/scripts/controller.js"></script>
+  <script src="/scripts/route.js"></script>
+  <script src="/scripts/service.js"></script>
+  <script src="/scripts/controller.js"></script>
 </head>
     
-<body class="menu" ng-app="SteroidsApplication">
+<body ng-app="SteroidsApplication">
 
-    <div class="padding" ng-controller="IndexController">
+    <div ng-controller="IndexController">
 
-        <super-navbar>
-          <super-navbar-title ng-bind="navbarTitle">
-            <super-navbar-button side="left">
-                Right
-            </super-navbar-button>
-        </super-navbar-title>
-        </super-navbar>
+        <div class="ham_nav">
+            <button id="ham_icon" class="toggleMenu">
+                <img src="images/hamburger-icon.svg"/>
+            </button>
+            <div id="title_nav" ng-bind="navbarTitle"></div>
+        </div>
+        
+        <div id="dummy_div"></div>
 
-        <div id="o-wrapper" class="o-wrapper">
-
-          <div class="c-buttons">
-            <button id="c-button--slide-left" class="c-button button icon super-navicon button-positive"></button>
-          </div>
-
-          <!-- other content in here -->
-
-        </div><!-- /o-wrapper -->
-
-        <!-- menus here -->
-        <nav id="c-menu--slide-left" class="c-menu c-menu--slide-left">
-          <button class="c-menu__close">&larr; Close Menu</button>
-          <ul class="c-menu__items">
-            <li class="c-menu__item"><a class="c-menu__link" href="#/home" ng-click="changeToHome()" onclick="closing()">Home</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/about" ng-click="changeToAbout()" onclick="closing()">About</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/browse" ng-click="changeToBrowse()" onclick="closing()">Browse</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/search" ng-click="changeToSearch()" onclick="closing()">Search</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/contact" ng-click="changeToContact()" onclick="closing()">Contact</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/favorite" ng-click="changeToFavorite()" onclick="closing()">My Favorites</a></li>
+        <div class="ham_menu menuClosed">
+          <ul class="menu_items">
+            <li class="toggleMenu"><a href="#/home" ng-click="changeToHome()">Home</a></li>
+            <li class="toggleMenu"><a href="#/about" ng-click="changeToAbout()">About</a></li>
+            <li class="toggleMenu"><a href="#/browse" ng-click="changeToBrowse()">Browse</a></li>
+            <li class="toggleMenu"><a href="#/search" ng-click="changeToSearch()">Search</a></li>
+            <li class="toggleMenu"><a href="#/contact" ng-click="changeToContact()">Contact</a></li>
+            <li class="toggleMenu"><a href="#/favorite" ng-click="changeToFavorite()">My Favorites</a></li>
           </ul>
-        </nav><!-- /c-menu slide-left -->
-
-        <div id="c-mask" class="c-mask"></div><!-- /c-mask -->
+        </div>
 
         <div ng-view></div>
-
-        <script src="/scripts/menu.js"></script>
+        
         <script>
-            var slideLeft = new Menu({
-                wrapper: '#o-wrapper',
-                type: 'slide-left',
-                menuOpenerClass: '.c-button',
-                maskId: '#c-mask'
-              });
-              var slideLeftBtn = document.querySelector('#c-button--slide-left');
-              var linkBtn = document.querySelector('.c-menu__link');
-
-              slideLeftBtn.addEventListener('click', function(e) {
-                e.preventDefault;
-                slideLeft.open();
-              });
-
-            function closing(){
-                slideLeft.close();
-            }
+            $(".toggleMenu").click(function() {
+               $(".ham_menu").toggleClass("menuClosed");
+            });
         </script>
-
+        
     </div>
 
 </body>

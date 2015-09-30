@@ -2,30 +2,57 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
 
     var db = window.openDatabase("DB name",1, "Display name",200000);
     
+    $scope.navbarTitle = "Home";
+    
+    $scope.yo = function() {
+        alert("yey!!");  
+    };
+    
+    $scope.changeToHome = function() {
+        $scope.navbarTitle = "Home";  
+    };
+    $scope.changeToAbout = function() {
+        $scope.navbarTitle = "About";  
+    };
+    $scope.changeToBrowse = function() {
+        $scope.navbarTitle = "Browse";  
+    };
+    
+    $scope.changeToSearch = function() {
+        $scope.navbarTitle = "Search";  
+    };
+    $scope.changeToContact = function() {
+        $scope.navbarTitle = "Contact";  
+    };
+    
+    $scope.changeToFavorite = function() {
+        $scope.navbarTitle = "Favorite";  
+    };
+    
     var list = [];
     $scope.browseArtist = [];
     $scope.listArtist1 = [];
     $scope.listArtist2 = [];
     $scope.numData1 = 0;
     $scope.numData2 = 0;
+    $scope.numData3 = 0;
 
     $scope.search_input="";
 
     $scope.$watch('online', function(newStatus) {});
+    
     DataService.getData().then(function(data) {
-                    
-                    $scope.$apply(function () {  
-                        $scope.browseArtist = data;
-                    });
-                    
-                    var nativeJavascriptListArtist = data;
-                    var ul = document.getElementById("nativeAddArtist");
 
-                    for (var p in nativeJavascriptListArtist) {
-                        if( nativeJavascriptListArtist.hasOwnProperty(p) ) {
-                          ul.innerHTML += "<li>"+"<img src='"+nativeJavascriptListArtist[p].picture+"'/><br>"+nativeJavascriptListArtist[p].name+"</li>";
-                        } 
-                      } 
+            $scope.browseArtist = data;
+
+            var nativeJavascriptListArtist = data;
+            var ul = document.getElementById("nativeAddArtist");
+
+            for (var p in nativeJavascriptListArtist) {
+                if( nativeJavascriptListArtist.hasOwnProperty(p) ) {
+                  ul.innerHTML += "<a class='item item-thumbnail-left'><img src='"+nativeJavascriptListArtist[p].picture+"'/><h2>"+nativeJavascriptListArtist[p].name+"</h2></a>";
+                } 
+              } 
                         
             
         }, function(reason) {
@@ -45,7 +72,19 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
                 $scope.numData1 = $scope.listOfArtist1.length;
             },function(e){alert(e.message);});
 
-        }
+        };
+    
+    $scope.browseNative = function() {
+        alert("native");
+        getAllArtists.getAll().then(function(d) {    
+            $scope.browseArtist = d.response;
+            },function(e){alert(e.message);}
+        );
+    };
+    
+    $scope.browseRepeat = function() {
+
+    };
     
     $("#btnClick").click(function(){
         var dt2 = new Date();
@@ -66,7 +105,6 @@ var onoff = 0;
         if(onoff == 0) {
             $(this).html("ON");
             $(this).css({ 'background-color': 'green' });
-            $("progressBar").css({ 'width': '+=60%' });
             onoff = 1;
         }
         else if(onoff == 1) {
@@ -75,6 +113,5 @@ var onoff = 0;
             onoff = 0;
         }
     });
-
-          
+    
 }]);

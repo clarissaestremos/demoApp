@@ -1,4 +1,16 @@
-DANICA LIST NG-REPEAT
+<div class="tabs-top1">
+    <a href="#/browse">Browse</a>
+</div>
+<div class="tabs-top2">
+    <a href="#/native">Javascript</a>
+</div>
+<div id="active" class="tabs-top3">
+    <a href="#/repeat">Ng-repeat</a>
+</div>
+
+<button ng-click="browseRepeat()">SHOW RESULTS</button>
+
+<div id="repeatTime"></div>
 
 <div class="list" >
     <ul>
@@ -9,5 +21,10 @@ DANICA LIST NG-REPEAT
             </a>
         </li>
     </ul>
-
 </div>
+
+<style>
+document.addEventListener('DOMContentLoaded', function() {
+   $("#repeatTime").html("DONE");
+}, false);
+</style>

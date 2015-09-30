@@ -5,14 +5,14 @@ myApp.service('DataService', function($http, $q) {
     
     self.getData = function(){
         var deferred = $q.defer(),
-            url = 'https://glacial-harbor-7075.herokuapp.com/musicArtist/list';
+            url = 'https://glacial-harbor-7075.herokuapp.com/musicArtist/someList';
         $http.get(url).success(function(result){
              db.transaction(function(transaction){
                 transaction.executeSql("create table if not exists songArtist(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT)");
                 transaction.executeSql("select * from songArtist", [], function(transaction,res) {
                    if (res.rows.length<1){ //first time to use the app
                         for(d of result){
-                            transaction.executeSql("INSERT INTO songArtist (name, picture) values ('"+d.name+"', '"+d.picture+"')");
+                            transaction.executeSql("INSERT INTO songArtist (name, picture) values ('"+d.name+"', '"+d.picture+"')");    
                         }
                       }
                 });
@@ -32,7 +32,7 @@ myApp.service('SearchService', function($http, $q) {
     var db = window.openDatabase("DB name",1, "Display name",200000);
     var self = this;
     
-    self.search= function(keyword, timeMS, timeS) {
+    self.search= function(keyword, timeMS, timeS ) {
             
         
             var deferred = $q.defer();

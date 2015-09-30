@@ -6,8 +6,7 @@ myApp.config(function($routeProvider) {
         templateUrl: 'pages/index1.html',
         controller: 'IndexController'
     })
-      
-    
+       
     .when('/about', {
         templateUrl: 'pages/about.html',
         controller: 'IndexController'
