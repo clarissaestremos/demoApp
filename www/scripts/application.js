@@ -1,5 +1,5 @@
 var myApp = angular.module('SteroidsApplication', [
-  'supersonic', 'ngRoute'
+  'supersonic', 'ngRoute','ui.router'
 ]);
 
 window.location.hash = "home";
