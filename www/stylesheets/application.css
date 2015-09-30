@@ -233,9 +233,13 @@ body.has-active-menu {
   cursor: not-allowed;
 }
 
-/*#ngClick{
-    background-color: aquamarine;   
-}*/
+.btn:active{
+    opacity: 0.3; 
+}
+
+#ngClick:active{
+   opacity: 0.3;   
+}
 
 /* -----------------------------------------------------------------------------
   CONTENT
@@ -251,6 +255,7 @@ body.has-active-menu {
     width: 50px;
     height: 50px;
 }
+
 /*.search-artist-container {
     height: 100px;
     width: 250px;
@@ -267,7 +272,6 @@ body.has-active-menu {
 
 /***************************/
 
-
 .inputBox {
     border-bottom: 1px solid #444444;
 }
@@ -276,3 +280,11 @@ body.has-active-menu {
     width: 150px;
     height: 150px;
 }
+    
+.supNavbar {
+    padding: 0;
+    margin: 0;
+    width: 118%;
+    background-color: blueviolet;
+}
+    

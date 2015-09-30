@@ -21,15 +21,21 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
 
   <script src="/scripts/application.js"></script>
+    <script src="/scripts/route.js"></script>
+    <script src="/scripts/service.js"></script>
+    <script src="/scripts/controller.js"></script>
 </head>
     
 <body class="menu" ng-app="SteroidsApplication">
 
     <div class="padding" ng-controller="IndexController">
 
-
         <super-navbar>
-          <super-navbar-title>YO</super-navbar-title>
+          <super-navbar-title ng-bind="navbarTitle">
+            <super-navbar-button side="left">
+                Right
+            </super-navbar-button>
+        </super-navbar-title>
         </super-navbar>
 
         <div id="o-wrapper" class="o-wrapper">
@@ -46,12 +52,21 @@
         <nav id="c-menu--slide-left" class="c-menu c-menu--slide-left">
           <button class="c-menu__close">&larr; Close Menu</button>
           <ul class="c-menu__items">
+<!--
             <li class="c-menu__item"><a class="c-menu__link" ui-sref="home" onclick="closing()">Home</a></li>
             <li class="c-menu__item"><a class="c-menu__link" href="#/about" onclick="closing()">About</a></li>
             <li class="c-menu__item"><a class="c-menu__link" ui-sref="browse" onclick="closing()">Browse</a></li>
             <li class="c-menu__item"><a class="c-menu__link" ng-click="searchPage()" onclick="closing()">Search</a></li>
             <li class="c-menu__item"><a class="c-menu__link" href="#/contact" onclick="closing()">Contact</a></li>
             <li class="c-menu__item"><a class="c-menu__link" href="#/favorite" onclick="closing()">My Favorites</a></li>
+-->
+
+            <li class="c-menu__item"><a class="c-menu__link" href="#/home" ng-click="changeToHome()" onclick="closing()">Home</a></li>
+            <li class="c-menu__item"><a class="c-menu__link" href="#/about" ng-click="changeToAbout()" onclick="closing()">About</a></li>
+            <li class="c-menu__item"><a class="c-menu__link" href="#/browse" ng-click="changeToBrowse()" onclick="closing()">Browse</a></li>
+            <li class="c-menu__item"><a class="c-menu__link" href="#/search" ng-click="changeToSearch()" onclick="closing()">Search</a></li>
+            <li class="c-menu__item"><a class="c-menu__link" href="#/contact" ng-click="changeToContact()" onclick="closing()">Contact</a></li>
+            <li class="c-menu__item"><a class="c-menu__link" href="#/favorite" ng-click="changeToFavorite()" onclick="closing()">My Favorites</a></li>
           </ul>
         </nav><!-- /c-menu slide-left -->
 
