@@ -54,6 +54,10 @@ a {
     width: 100%;
 }
 
+.chooseTabs {
+    line-height: 50px;
+}
+
 #title_nav {
     float: left;
     margin-left: 15px;
@@ -76,7 +80,6 @@ a {
 .tabs-top1 a, .tabs-top2 a, .tabs-top3 a {
     text-decoration: none;
     color: #1A1A1A;
-    line-height: 50px;
 }
 
 .tabs-top1 a:active, .tabs-top2 a:active, .tabs-top3 a:active {

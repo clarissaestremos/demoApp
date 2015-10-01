@@ -7,10 +7,10 @@ myApp.service('DataService', function($http, $q) {
             url = 'https://glacial-harbor-7075.herokuapp.com/musicArtist/someList';
         $http.get(url).success(function(result){
              db.transaction(function(transaction){
-                /*alert("hello");
+/*                alert("hello");
                 transaction.executeSql("drop table songArtist",[],function(){alert("dropped");},function(e){alert(e.message);});
-                transaction.executeSql("drop table artistsearch",[],function(){alert("dropped");},function(e){alert(e.message);});*/
-                 
+                transaction.executeSql("drop table artistsearch",[],function(){alert("dropped");},function(e){alert(e.message);});
+                 */
                 transaction.executeSql("create table if not exists songArtist(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT)",[],function(){console.log("created");},function(){console.log("error create");});
                 transaction.executeSql("select * from songArtist", [], function(transaction,res) {
                     /*alert(res.rows.length);*/
@@ -99,4 +99,36 @@ myApp.service('SearchService', function($http, $q) {
     }
     
     return self;
+});
+
+myApp.service('BrowseService', function($http, $q) {
+    
+    var db = window.openDatabase("DB name",1, "Display name",200000);
+    var self = this;
+
+    self.browse = function(keyword) {   
+        
+            var deferred = $q.defer();
+            db.transaction(function(transaction) {
+
+              var str="select * from songArtist order by name limit 100";
+                
+                transaction.executeSql(str,[], function(transaction, result) {
+                    var responses = [];
+                    for (var i = 0; i < result.rows.length; i++) {
+                        
+                        responses.push(result.rows.item(i));
+                        
+                    }
+            
+                    deferred.resolve({response: responses}); //at the end of processing the responses
+                    
+                },function(e){
+                    alert(e.message);
+                });
+            });
+            
+            // Return the promise to the controller
+            return deferred.promise;
+    }
 });

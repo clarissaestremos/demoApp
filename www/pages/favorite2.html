@@ -1,11 +1,26 @@
-<div class="tabs-top1">
-    <a href="#/favorite">FAVORITES</a>
-</div>
-<div id="active" class="tabs-top2">
-    <a href="#/favorite2">BOOTSTRAP 2</a>
-</div>
-<div class="tabs-top3">
-    <a href="#/favorite3">BOOTSTRAP 3</a>
+<script type="text/javascript">
+$(document).ready(function() {
+    var startLoad2 = new Date().getTime();
+    alert(startLoad2);
+});
+</script>
+
+<div class="chooseTabs">
+    <a href="#/favorite">
+    <div class="tabs-top1">
+        FAVORITES
+    </div>
+    </a>
+    <a href="#/favorite2">
+    <div id="active" class="tabs-top2">
+        BOOTSTRAP 2
+    </div>
+    </a>
+    <a href="#/favorite3">
+    <div class="tabs-top3">
+        BOOTSTRAP 3
+    </div>
+    </a>
 </div>
 
 <link href="../stylesheets/bootstrap2.css" rel="stylesheet"/>
@@ -15,7 +30,7 @@
 
     <button class="btn">PLAY</button>
 
-    <br>
+    <br><br>
 
      DOWNLOAD TRACKS&nbsp;&nbsp;<button class="btn dlBtn">OFF</button>  
     <br><br>
@@ -47,3 +62,11 @@
     </div>
     
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+ // executes when HTML-Document is loaded and DOM is ready
+    var end = new Date().getTime();
+    alert(end);
+});
+</script>

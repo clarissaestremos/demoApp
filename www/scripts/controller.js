@@ -1,12 +1,15 @@
-myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','SearchService', function(supersonic, DataService, $scope, SearchService) {
+myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','SearchService', 'BrowseService', function(supersonic, DataService, $scope, SearchService, BrowseService) {
 
     var db = window.openDatabase("DB name",1, "Display name",200000);
+    var ul = document.getElementById("nativeAddArtist");
+    var startRep;
     
     $scope.navbarTitle = "Home";
     
     $scope.changeToHome = function() {
         $scope.navbarTitle = "Home";  
     };
+    
     $scope.changeToAbout = function() {
         $scope.navbarTitle = "About";  
     };
@@ -38,25 +41,13 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     $scope.showButton=false;
     $scope.showButtonFTS=false;
     $scope.search_input="";
-    $scope.pageSize = 10;
-    $scope.maxSize = 5;
+    $scope.pageSize = 100;
+    $scope.maxSize = 3;
 
     $scope.$watch('online', function(newStatus) {});
     
     DataService.getData().then(function(data) {
 
-            $scope.browseArtist = data;
-
-            var nativeJavascriptListArtist = data;
-            var ul = document.getElementById("nativeAddArtist");
-
-            for (var p in nativeJavascriptListArtist) {
-                if( nativeJavascriptListArtist.hasOwnProperty(p) ) {
-                  ul.innerHTML += "<a class='item item-thumbnail-left'><img src='"+nativeJavascriptListArtist[p].picture+"'/><h2>"+nativeJavascriptListArtist[p].name+"</h2></a>";
-                } 
-              } 
-                        
-            
         }, function(reason) {
             alert("There something wrong in the server or the connection.");
         });  
@@ -81,15 +72,39 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
         };
     
     $scope.browseNative = function() {
-        alert("native");
-        getAllArtists.getAll().then(function(d) {    
-            $scope.browseArtist = d.response;
-            },function(e){alert(e.message);}
-        );
+        
+        BrowseService.browse().then(function(data) {
+
+            var nativeJavascriptListArtist = data.response;
+            
+            var start = new Date().getTime();
+            
+            for (var p in nativeJavascriptListArtist) {
+                if( nativeJavascriptListArtist.hasOwnProperty(p) ) {
+                  ul.innerHTML += "<a class='item item-thumbnail-left'><img src='"+nativeJavascriptListArtist[p].picture+"'/><h2>"+nativeJavascriptListArtist[p].name+"</h2></a>";
+                } 
+            } 
+            
+            var end = new Date().getTime();
+            var time = end - start;
+            alert('Execution time: ' + time + ' milliseconds');
+            
+        }, function(reason) {
+            alert("There something wrong in the server or the connection.");
+        }); 
+
     };
     
     $scope.browseRepeat = function() {
+            BrowseService.browse().then(function(data) {
+                
+            startRep = new Date().getTime();
 
+            $scope.browseArtist = data.response;
+            
+        }, function(reason) {
+            alert("There something wrong in the server or the connection.");
+        }); 
     };
 
     
@@ -169,27 +184,125 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     });
     
     var varCounter = 0;
+
     var increaseBar = function(){
      if(varCounter <= 5) {
           ++varCounter;
           $("#p-bar").css( "width", "+=52%" );
      } 
-        else {
+     else if(varCounter == 6){
           clearInterval(increaseProgress);
           $("#success-loaded").css( "display", "block" );
-          removeSuccessMessage();
+          removeSuccessMessage();    
+          ++varCounter;
      }
     };
     
     function removeSuccessMessage() {
         setTimeout(function(){ 
             $("#success-loaded").css( "display", "none" );
-            clearTimeout(removeSuccessMessage);
+            removeProgress();
         }, 3000);
+    };
+    
+    function removeProgress() {
+        setTimeout(function(){ 
+            $("#hideProgress").css( "display", "none" );
+        }, 2000);
     };
     
     function increaseProgress() {
         setInterval(increaseBar, 1000);          
     };
+    
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+        var end = new Date().getTime();
+        var time = end - startRep;
+        alert('Execution time: ' + time + ' milliseconds');
+    });
+    
+//    $scope.sample = function(){
+//        $scope.data1 = "Data1";   
+//        
+//    }
+//    
+//    $scope.touchStart = function() {
+//        $scope.timer1 = new Date().getTime();
+//    }
+//
+//    $scope.touchEnd = function() {
+//        $scope.timer1 = (new Date().getTime()) - $scope.timer1;
+//    }
+//    
+//    var timer2;
+////    $("#btnClick").on('touchstart',function(e){
+//////         $scope.$apply(function () {  
+////            timer2 = new Date().getTime();
+////    }).on('touchend',function(e){
+//////        $scope.$apply(function () {  
+////           timer2 = (new Date().getTime()) - timer2;
+////            document.getElementById("delay").innerHTML = "Delay: "+timer2+"ms";
+////        
+//////        });
+////    });
+//    $("#btnClick").on('click',function(e){
+//         document.getElementById("data").innerHTML = "Data2" ;
+//    });
+//    
+//        $('#autoStart').click(function(){
+//            start();
+////            setTimeout(start, 2000);
+////             $("#btnClick").on('touchend',function(e){
+////timer2 = (new Date().getTime()) - timer2;
+////            document.getElementById("delay").innerHTML = "Delay: "+timer2+"ms";
+//////        
+////    });
+//        });
+//    
+//   
+//           
+//        function start() {
+////            $("#btnClick").click();
+//            $("#btnClick").on('click',function(e){
+//         document.getElementById("data").innerHTML = "Data2" ;
+//                timer2 = new Date().getTime();
+//                setTimeout(function(){
+//                timer2 = (new Date().getTime()) - timer2;
+//                }, 2000);
+//    });
+////            $("#ngClick").click();
+////            $("#btnClick").on('touchstart',function(e){
+//////         $scope.$apply(function () {  
+////            timer2 = new Date().getTime();
+////    });
+//        }
+        
+$scope.sample = function(){
+        $scope.data1 = "Data1";   
+        
+    }
+    
+    $scope.touchStart = function() {
+        $scope.timer1 = Date.now();
+    }
 
+    $scope.touchEnd = function() {
+        $scope.timer1 = Date.now() - $scope.timer1;
+    }
+    
+    var timer2;
+    $("#btnClick").on('touchstart',function(e){
+//         $scope.$apply(function () {  
+            timer2 = Date.now();
+//        });
+    }).on('touchend',function(e){
+//        $scope.$apply(function () {  
+           timer2 = Date.now() - timer2;
+            document.getElementById("delay").innerHTML = "Delay: "+timer2+"ms";
+//        });
+    });
+ $("#btnClick").on('click',function(e){
+         document.getElementById("data").innerHTML = "Data2" ;
+    });
+   
 }]);

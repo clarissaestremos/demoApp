@@ -1,11 +1,25 @@
-<div class="tabs-top1">
-    <a href="#/favorite">FAVORITES</a>
-</div>
-<div class="tabs-top2">
-    <a href="#/favorite2">BOOTSTRAP 2</a>
-</div>
-<div id="active" class="tabs-top3">
-    <a href="#/favorite3">BOOTSTRAP 3</a>
+<script type="text/javascript">
+$(document).ready(function() {
+    var startLoad = new Date();
+});
+</script>
+
+<div class="chooseTabs">
+    <a href="#/favorite">
+    <div class="tabs-top1">
+        FAVORITES
+    </div>
+    </a>
+    <a href="#/favorite2">
+    <div class="tabs-top2">
+        BOOTSTRAP 2
+    </div>
+    </a>
+    <a href="#/favorite3">
+    <div id="active" class="tabs-top3">
+        BOOTSTRAP 3
+    </div>
+    </a>
 </div>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -46,5 +60,13 @@
       </div>
     </div>
 </div>
-    
+     
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+ // executes when HTML-Document is loaded and DOM is ready
+    var end = new Date();
+    alert(startLoad.getTime() - end.getTime());
+});
+</script>

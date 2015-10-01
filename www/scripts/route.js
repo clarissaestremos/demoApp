@@ -33,8 +33,7 @@ myApp.config(function($routeProvider) {
     })
     
     .when('/repeat', {
-        templateUrl: 'pages/repeat.html',
-        controller: 'IndexController'
+        templateUrl: 'pages/repeat.html'
     })
     
     .when('/favorite', {
@@ -49,6 +48,11 @@ myApp.config(function($routeProvider) {
     
     .when('/favorite3', {
         templateUrl: 'pages/favorite3.html',
+        controller: 'IndexController'
+    })
+    
+    .when('/about', {
+        templateUrl: 'pages/about.html',
         controller: 'IndexController'
     })
     
