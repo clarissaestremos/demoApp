@@ -20,6 +20,7 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
   <script src="scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
   <script src="/scripts/application.js"></script>
+  <script src="scripts/directive.js"></script>
   <script src="/scripts/route.js"></script>
   <script src="/scripts/service.js"></script>
   <script src="/scripts/controller.js"></script>
@@ -43,11 +44,12 @@
 
         <div class="ham_menu menuClosed">
           <ul class="menu_items">
-            <li class="toggleMenu"><a href="#/home" ng-click="changeToHome()">Home</a></li>
-            <li class="toggleMenu"><a href="#/browse" ng-click="changeToBrowse()">Browse</a></li>
-            <li class="toggleMenu"><a href="#/search" ng-click="changeToSearch()">Search</a></li>
-            <li class="toggleMenu"><a href="#/contact" ng-click="changeToContact()">Contact</a></li>
-            <li class="toggleMenu"><a href="#/favorite" ng-click="changeToFavorite()">My Favorites</a></li>
+            <a href="#/home" ng-click="changeToHome()"><li class="toggleMenu">Home</li></a>
+            <a href="#/about" ng-click="changeToAbout()"><li class="toggleMenu">About</li></a>
+            <a href="#/browse" ng-click="changeToBrowse()"><li class="toggleMenu">Browse</li></a>
+            <a href="#/search" ng-click="changeToSearch()"><li class="toggleMenu">Search</li></a>
+            <a href="#/contact" ng-click="changeToContact()"><li class="toggleMenu">Contact</li></a>
+            <a href="#/favorite" ng-click="changeToFavorite()"><li class="toggleMenu">My Favorites</li></a>
           </ul>
         </div>
 

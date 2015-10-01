@@ -27,8 +27,10 @@ function getPageLoadTime(){
         // now use the beforeload and afterload to calculate the seconds
         seconds = (afterload-beforeload) / 1000;
         // Place the seconds in the innerHTML to show the results
-        $("#load_time").text('Page load time ::  ' + seconds + ' sec(s).');
+        $("#load_time").text('Page load time :  ' + seconds + ' sec(s).');
 }
+
+window.onload = getPageLoadTime;
 
 myApp.filter('startFrom', function(){
     return function(data, start){
@@ -36,4 +38,5 @@ myApp.filter('startFrom', function(){
     }
 });
 
-window.onload = getPageLoadTime;
+
+

@@ -43,6 +43,11 @@ myApp.config(function($routeProvider) {
         templateUrl: 'pages/favorite3.html'
     })
     
+    .when('/about', {
+        templateUrl: 'pages/about.html',
+        controller: 'IndexController'
+    })
+    
 });
 
 /*myApp.config(function($stateProvider,$urlRouterProvider) {

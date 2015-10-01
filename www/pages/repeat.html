@@ -1,23 +1,30 @@
-
-
-
-<div class="tabs-top1">
-    <a href="#/browse">Browse</a>
+<div class="chooseTabs">
+    <a href="#/browse">
+    <div class="tabs-top1">
+        Browse
+    </div>
+    </a>
+    <a href="#/native">
+    <div class="tabs-top2">
+        Javascript
+    </div>
+    </a>
+    <a href="#/repeat">
+    <div id="active" class="tabs-top3">
+        Ng-repeat
+    </div>
+    </a>
 </div>
-<div class="tabs-top2">
-    <a href="#/native">Javascript</a>
-</div>
-<div id="active" class="tabs-top3">
-    <a href="#/repeat">Ng-repeat</a>
-</div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <button ng-click="browseRepeat()">SHOW RESULTS</button>
 
 <div id="repeatTime"></div>
 
-<div class="list" >
+<div class="list">
     <ul>
-        <li ng-repeat="artist in browseArtist | startFrom:(currentPage - 1) * pageSize | limitTo: pageSize">
+        <li ng-repeat="artist in browseArtist" on-finish-render="ngRepeatFinished">
             <a class="item item-thumbnail-left">
               <img src="{{artist.picture}}">
               <h2>{{artist.name}}</h2>
@@ -26,10 +33,7 @@
     </ul>
 </div>
 
+<!--
  <pagination total-items="browseArtist.length" ng-model="currentPage" max-size="maxSize" items-per-page="pageSize" class="pagination-sm" boundary-links="true"></pagination>
-
-<style>
-document.addEventListener('DOMContentLoaded', function() {
-   $("#repeatTime").html("DONE");
-}, false);
-</style>
+ | startFrom:(currentPage - 1) * pageSize | limitTo: pageSize
+-->
