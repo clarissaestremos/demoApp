@@ -4,10 +4,6 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     
     $scope.navbarTitle = "Home";
     
-    $scope.yo = function() {
-        alert("yey!!");  
-    };
-    
     $scope.changeToHome = function() {
         $scope.navbarTitle = "Home";  
     };
@@ -26,7 +22,7 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     };
     
     $scope.changeToFavorite = function() {
-        $scope.navbarTitle = "Favorite";  
+        $scope.navbarTitle = "My Favorites";  
     };
     
     var list = [];
@@ -42,6 +38,8 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     $scope.showButton=false;
     $scope.showButtonFTS=false;
     $scope.search_input="";
+    $scope.pageSize = 10;
+    $scope.maxSize = 5;
 
     $scope.$watch('online', function(newStatus) {});
     
@@ -123,21 +121,6 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
                 
             },function(e){alert(e.message);});
     }
-
-var onoff = 0;
-    
-    $(".dlBtn").click(function(){
-        if(onoff == 0) {
-            $(this).html("ON");
-            $(this).css({ 'background-color': 'green' });
-            onoff = 1;
-        }
-        else if(onoff == 1) {
-            $(this).html("OFF");
-            $(this).css({ 'background-color': 'gray' });
-            onoff = 0;
-        }
-    });
     
     $scope.moreItem = function(){
         
@@ -168,5 +151,45 @@ var onoff = 0;
         $scope.listOfArtist2= $scope.listOfArtistFTS.slice(0,$scope.pages2);
         
     }
+    
+    var onoff = 0;
+    
+    $(".dlBtn").click(function(){
+        if(onoff == 0) {
+            $(this).html("ON");
+            onoff = 1;
+            $("#hideProgress").css( "display", "block" );
+            increaseProgress();
+        }
+        else if(onoff == 1) {
+            $(this).html("OFF");
+            $("#hideProgress").css( "display", "none" );
+            onoff = 0;
+        }
+    });
+    
+    var varCounter = 0;
+    var increaseBar = function(){
+     if(varCounter <= 5) {
+          ++varCounter;
+          $("#p-bar").css( "width", "+=52%" );
+     } 
+        else {
+          clearInterval(increaseProgress);
+          $("#success-loaded").css( "display", "block" );
+          removeSuccessMessage();
+     }
+    };
+    
+    function removeSuccessMessage() {
+        setTimeout(function(){ 
+            $("#success-loaded").css( "display", "none" );
+            clearTimeout(removeSuccessMessage);
+        }, 3000);
+    };
+    
+    function increaseProgress() {
+        setInterval(increaseBar, 1000);          
+    };
 
 }]);
