@@ -5,7 +5,7 @@ myApp.service('DataService', function($http, $q) {
     self.getData = function(){
         console.log("yey");
         var deferred = $q.defer(),
-            url = 'https://glacial-harbor-7075.herokuapp.com/musicArtist/list';
+            url = 'https://glacial-harbor-7075.herokuapp.com/musicArtist/someList';
         $http.get(url).success(function(result){
              db.transaction(function(transaction){
                  console.log("hello");
@@ -44,9 +44,8 @@ myApp.service('SearchService', function($http, $q) {
     
     var db = window.openDatabase("DB name",1, "Display name",200000);
     var self = this;
-    
-    self.search= function(keyword) {
-            
+
+    self.search= function(keyword) {   
         
             var deferred = $q.defer();
             db.transaction(function(transaction) {
