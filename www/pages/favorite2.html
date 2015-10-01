@@ -8,39 +8,42 @@
     <a href="#/favorite3">BOOTSTRAP 3</a>
 </div>
 
+<link href="../stylesheets/bootstrap2.css" rel="stylesheet"/>
 <link href="../stylesheets/bootstrap/img/glyphicons-halflings-white.png" rel="stylesheet">
 
 <div class="favorite-bootstrap2-container">
 
-<button class="btn">PLAY</button>
+    <button class="btn">PLAY</button>
 
-<br>
+    <br>
 
- DOWNLOAD TRACKS<button class="btn dlBtn">OFF</button>  
-<br><br>
-<!-- LAGAY KA DITO NG KUNWARING DOWNLOAD BUTTON TAPOS JAVASCRIPT MO YUNG PROGRESS BAR. MAGPAPAKITA PAG NACLICK YUNG BUTTON -->  
-<div class="progress">
-  <div class="bar" style="width: 10%; height: 20px; margin-left: 20px; border-top-left-radius: 5px; border-bottom-left-radius: 5px;"></div>
-</div>
-<!-- TAPOS MAGDIDISPLAY NG SUCCESS PAG NADL NA -->
-    
-<div class="alert alert-success">Success! You have successfully downloaded all the tracks.</div>
-    
-    <ul>
-        <li><img src="#" />ARTIST'S NAME<button class="btn"><i class="icon-heart"></i></span></button></li>
-        <li><img src="#" />ARTIST'S NAME<button class="btn"><i class="icon-heart"></i></span></button></li>
-        <li><img src="#" />ARTIST'S NAME<button class="btn"><i class="icon-heart"></i></span></button></li>
-        <li><img src="#" />ARTIST'S NAME<button class="btn"><i class="icon-heart"></i></span></button></li>
-    </ul> 
-    
-<div class="btn-toolbar">
-  <div class="btn-group">
-    <button class="btn">1</button>
-    <button class="btn">2</button>
-    <button class="btn">3</button>
-    <button class="btn">4</button>
-    <button class="btn">5</button>
-  </div>
-</div>
+     DOWNLOAD TRACKS&nbsp;&nbsp;<button class="btn dlBtn">OFF</button>  
+    <br><br>
+    <!-- LAGAY KA DITO NG KUNWARING DOWNLOAD BUTTON TAPOS JAVASCRIPT MO YUNG PROGRESS BAR. MAGPAPAKITA PAG NACLICK YUNG BUTTON -->  
+    <div class="progress" id="hideProgress">
+      <div class="bar" id="p-bar"></div>
+    </div>
+    <!-- TAPOS MAGDIDISPLAY NG SUCCESS PAG NADL NA -->
+
+    <div class="alert alert-success" id="success-loaded">Success! You have successfully downloaded all the tracks.</div>
+
+        <ul class="anon">
+            <li><img src="../images/anonymous.png" />ARTIST'S NAME<button class="btn"><i class="icon-heart"></i></button></li>
+            <li><img src="../images/anonymous.png" />ARTIST'S NAME<button class="btn"><i class="icon-heart"></i></button></li>
+            <li><img src="../images/anonymous.png" />ARTIST'S NAME<button class="btn"><i class="icon-heart"></i></button></li>
+            <li><img src="../images/anonymous.png" />ARTIST'S NAME<button class="btn"><i class="icon-heart"></i></button></li>
+        </ul> 
+
+    <div class="btnpagination">    
+        <div class="btn-toolbar">
+          <div class="btn-group">
+            <button id="active-page-fav" class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+            <button class="btn">4</button>
+            <button class="btn">5</button>
+          </div>
+        </div>
+    </div>
     
 </div>

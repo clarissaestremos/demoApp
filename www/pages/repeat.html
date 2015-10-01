@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+
 <div class="tabs-top1">
     <a href="#/browse">Browse</a>
 </div>
@@ -14,7 +17,7 @@
 
 <div class="list" >
     <ul>
-        <li ng-repeat="artist in browseArtist">
+        <li ng-repeat="artist in browseArtist | startFrom:(currentPage - 1) * pageSize | limitTo: pageSize">
             <a class="item item-thumbnail-left">
               <img src="{{artist.picture}}">
               <h2>{{artist.name}}</h2>
@@ -22,6 +25,8 @@
         </li>
     </ul>
 </div>
+
+ <pagination total-items="browseArtist.length" ng-model="currentPage" max-size="maxSize" items-per-page="pageSize" class="pagination-sm" boundary-links="true"></pagination>
 
 <style>
 document.addEventListener('DOMContentLoaded', function() {

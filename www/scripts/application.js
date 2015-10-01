@@ -1,5 +1,5 @@
 var myApp = angular.module('SteroidsApplication', [
-  'supersonic', 'ngRoute','ui.router'
+  'supersonic', 'ngRoute','ui.router', 'ui.bootstrap'
 ]);
 
 window.location.hash = "home";
@@ -29,5 +29,11 @@ function getPageLoadTime(){
         // Place the seconds in the innerHTML to show the results
         $("#load_time").text('Page load time ::  ' + seconds + ' sec(s).');
 }
+
+myApp.filter('startFrom', function(){
+    return function(data, start){
+        return data.slice(start);   
+    }
+});
 
 window.onload = getPageLoadTime;
