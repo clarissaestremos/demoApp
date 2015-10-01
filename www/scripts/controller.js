@@ -1,4 +1,4 @@
-myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','SearchService', function(supersonic, DataService, $scope, SearchService) {
+myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','SearchService','SaveService', function(supersonic, DataService, $scope, SearchService,SaveService) {
 
     var db = window.openDatabase("DB name",1, "Display name",200000);
     
@@ -43,26 +43,41 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
 
     $scope.$watch('online', function(newStatus) {});
     
+    $scope.loader = {
+      loading: true
+    };
+    
+    $scope.searchLoader = {
+      loading: false
+    };
+    
+    $scope.searchFTSLoader = {
+      loading: false
+    };
+    
     DataService.getData().then(function(data) {
 
             $scope.browseArtist = data;
-
-            var nativeJavascriptListArtist = data;
+            SaveService.saveData(data);
+            $scope.loader.loading = false;
+            /*var nativeJavascriptListArtist = data;
             var ul = document.getElementById("nativeAddArtist");
 
             for (var p in nativeJavascriptListArtist) {
                 if( nativeJavascriptListArtist.hasOwnProperty(p) ) {
                   ul.innerHTML += "<a class='item item-thumbnail-left'><img src='"+nativeJavascriptListArtist[p].picture+"'/><h2>"+nativeJavascriptListArtist[p].name+"</h2></a>";
                 } 
-              } 
+              }*/ 
                         
             
         }, function(reason) {
             alert("There something wrong in the server or the connection.");
         });  
     
-    $scope.search = function() {
-            SearchService.search($scope.search_input).then(function(d) {
+    $scope.search = function(search_input) {
+        $scope.searchLoader.loading = true;
+            SearchService.search(search_input).then(function(d) {
+                $scope.searchLoader.loading = false;
                 $scope.listOfArtist = d.response;
                 var length = $scope.listOfArtist.length;
                 $scope.pages1 = 10;
@@ -78,9 +93,9 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
                     $scope.showButton=true;
                 
             },function(e){alert(e.message);});
-        };
+        }
     
-    $scope.browseNative = function() {
+    /*$scope.browseNative = function() {
         alert("native");
         getAllArtists.getAll().then(function(d) {    
             $scope.browseArtist = d.response;
@@ -90,7 +105,7 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     
     $scope.browseRepeat = function() {
 
-    };
+    };*/
 
     
     $scope.searchPage = function() {
@@ -104,8 +119,10 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
         console.log($location.path());*/
     }
     
-    $scope.searchFTS = function(){
-        SearchService.searchFTS($scope.search_input).then(function(d) {
+    $scope.searchFTS = function(search_input){
+        $scope.searchFTSLoader.loading = true;
+        SearchService.searchFTS(search_input).then(function(d) {
+                $scope.searchFTSLoader.loading = false;
                 $scope.listOfArtistFTS = d.response;
                 var length = $scope.listOfArtistFTS.length;
                 $scope.showButtonFTS=false;

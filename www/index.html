@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/components/supersonic/css/supersonic.css">
   <link rel="stylesheet" href="/stylesheets/application.css">
   <link rel="import" href="/components/supersonic/components/import.html">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://localhost/cordova.js"></script>
   <script src="/components/steroids-js/steroids.js"></script>
@@ -34,6 +35,9 @@
             </button>
             <div id="title_nav" ng-bind="navbarTitle"></div>
         </div>
+        <br/>
+        <button ng-show="loader.loading" class="btn btn-lg btn-warning center"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button>
+        <br/>
         
         <div id="dummy_div"></div>
 
@@ -47,7 +51,7 @@
           </ul>
         </div>
 
-        <div ng-view></div>
+        <div class="ng-view"></div>
         
         <script>
             $(".toggleMenu").click(function() {

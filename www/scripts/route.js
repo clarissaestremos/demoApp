@@ -3,53 +3,44 @@ myApp.config(function($routeProvider) {
     $routeProvider
    
     .when('/home', {
-        templateUrl: 'pages/index1.html',
-        controller: 'IndexController'
+        templateUrl: 'pages/index1.html'
     })
        
     .when('/about', {
-        templateUrl: 'pages/about.html',
-        controller: 'IndexController'
+        templateUrl: 'pages/about.html'
     })
     
     .when('/browse', {
-        templateUrl: 'pages/browse.html',
-        controller: 'IndexController'
+        templateUrl: 'pages/browse.html'
     })
     
     .when('/search', {
-        templateUrl: 'pages/search.html',
-        controller: 'IndexController'
+        templateUrl: 'pages/search.html'/*,
+        controller: 'IndexController'*/
     })
     
     .when('/contact', {
-        templateUrl: 'pages/contact.html',
-        controller: 'IndexController'
+        templateUrl: 'pages/contact.html'
     })
     
     .when('/native', {
-        templateUrl: 'pages/native.html',
-        controller: 'IndexController'
+        templateUrl: 'pages/native.html'
     })
     
     .when('/repeat', {
-        templateUrl: 'pages/repeat.html',
-        controller: 'IndexController'
+        templateUrl: 'pages/repeat.html'
     })
     
     .when('/favorite', {
-        templateUrl: 'pages/favorite.html',
-        controller: 'IndexController'
+        templateUrl: 'pages/favorite.html'
     })
     
     .when('/favorite2', {
-        templateUrl: 'pages/favorite2.html',
-        controller: 'IndexController'
+        templateUrl: 'pages/favorite2.html'
     })
     
     .when('/favorite3', {
-        templateUrl: 'pages/favorite3.html',
-        controller: 'IndexController'
+        templateUrl: 'pages/favorite3.html'
     })
     
 });
