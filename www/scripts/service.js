@@ -153,7 +153,11 @@ myApp.service('SaveService', function($http, $q) {
 
 });
 myApp.service('BrowseService', function($http, $q) {
-    self.browse = function(keyword) {   
+    
+    var db = window.openDatabase("DB name",1, "Display name",200000);
+    var self = this;
+    
+    self.browse = function() {   
         
             var deferred = $q.defer();
             db.transaction(function(transaction) {

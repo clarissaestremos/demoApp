@@ -1,7 +1,7 @@
 myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','SearchService','SaveService', 'BrowseService', function(supersonic, DataService, $scope, SearchService,SaveService, BrowseService) {
 
     var db = window.openDatabase("DB name",1, "Display name",200000);
-    var ul = document.getElementById("nativeAddArtist");
+    
     var startRep;
     
     $scope.navbarTitle = "Home";
@@ -104,12 +104,12 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
         BrowseService.browse().then(function(data) {
 
             var nativeJavascriptListArtist = data.response;
-            
+            var ul = document.getElementById("nativeAddArtist");
             var start = new Date().getTime();
             
             for (var p in nativeJavascriptListArtist) {
                 if( nativeJavascriptListArtist.hasOwnProperty(p) ) {
-                  ul.innerHTML += "<a class='item item-thumbnail-left'><img src='"+nativeJavascriptListArtist[p].picture+"'/><h2>"+nativeJavascriptListArtist[p].name+"</h2></a>";
+                  ul.innerHTML += "<li><a class='item item-thumbnail-left'><img src='"+nativeJavascriptListArtist[p].picture+"'/><h2>"+nativeJavascriptListArtist[p].name+"</h2></a><li>";
                 } 
             } 
             
