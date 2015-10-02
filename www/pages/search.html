@@ -12,7 +12,8 @@
         <div class="col">
 
             <div id ="ngClick" class="button button-full button-dark" ng-click="search(search_input)">Using 'LIKE'</div><br/>
-            <div ng-if="searchClicked">Showing {{pages1}} out of {{numData1}} data</div><br/>
+            <div ng-show="searchClicked">Showing {{pages1}} out of {{numData1}} data<br/></div>
+
 
             <div ng-show="searchLoader.loading" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></div>
 
@@ -36,9 +37,8 @@
     
     <div class="col">
 
-
         <button ng-click="searchFTS(search_input)" class="button button-full button-dark">Full Text Search</button><br/>
-        <div ng-if="searchFTSClicked">Showing {{pages2}} out of {{numData2}} data</div><br/>
+        <div ng-show="searchFTSClicked">Showing {{pages2}} out of {{numData2}} data<br/></div>
         
         <div ng-show="searchFTSLoader.loading" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> </div>
         

@@ -37,9 +37,12 @@
             </button>
             <div id="title_nav" ng-bind="navbarTitle"></div>
         </div>
-        <br/>
-        <button ng-show="loader.loading" class="button button-outline button-stable center"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button>
-        <br/>
+        
+        <div ng-show="loader.loading">
+            <br/>
+            <button ng-show="loader.loading" class="button button-outline button-stable center"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button>
+            <br/>
+        </div>
         
         <div id="dummy_div"></div>
 
