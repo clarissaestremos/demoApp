@@ -29,41 +29,38 @@
 <body ng-app="SteroidsApplication">
 
     <div ng-controller="IndexController">
-
-        <div class="ham_nav">
-            <button id="ham_icon" class="toggleMenu">
-                <img src="images/hamburger-icon.svg"/>
-            </button>
-            <div id="title_nav" ng-bind="navbarTitle"></div>
-        </div>
-        
         <div ng-show="loader.loading">
-            <br/>
-            <button class="btn btn-lg btn-warning center"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button>
-            <br/>
-        </div>
+                <br/>
+                <button class="btn btn-lg btn-warning center"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button>
+                <br/>
+            </div>
         
-        <div id="dummy_div"></div>
+        <div ng-show="loader.notLoading">
+            <div class="ham_nav">
+                <button id="ham_icon" class="toggleMenu">
+                    <img src="images/hamburger-icon.svg"/>
+                </button>
+                <div id="title_nav" ng-bind="navbarTitle"></div>
+            </div>
 
-        <div class="ham_menu menuClosed">
-          <ul class="menu_items">
-            <a href="#/home" ng-click="changeToHome()"><li class="toggleMenu">Home</li></a>
-            <a href="#/about" ng-click="changeToAbout()"><li class="toggleMenu">About</li></a>
-            <a href="#/browse" ng-click="changeToBrowse()"><li class="toggleMenu">Browse</li></a>
-            <a href="#/search" ng-click="changeToSearch()"><li class="toggleMenu">Search</li></a>
-            <a href="#/contact" ng-click="changeToContact()"><li class="toggleMenu">Contact</li></a>
-            <a href="#/favorite" ng-click="changeToFavorite()"><li class="toggleMenu">My Favorites</li></a>
-          </ul>
-        </div>
+            
 
-        <div class="ng-view"></div>
-        
-        <script>
-            $(".toggleMenu").click(function() {
-               $(".ham_menu").toggleClass("menuClosed");
-            });
-        </script>
-        
+            <div id="dummy_div"></div>
+
+            <div class="ham_menu menuClosed">
+              <ul class="menu_items">
+                <a href="#/home" ng-click="changeTitle('Home')"><li class="toggleMenu">Home</li></a>
+                <a href="#/about" ng-click="changeTitle('About')"><li class="toggleMenu">About</li></a>
+                <a href="#/browse" ng-click="changeTitle('Browse')"><li class="toggleMenu">Browse</li></a>
+                <a href="#/search" ng-click="changeTitle('Search')"><li class="toggleMenu">Search</li></a>
+                <a href="#/contact" ng-click="changeTitle('Settings')"><li class="toggleMenu">Settings</li></a>
+                <a href="#/favorite" ng-click="changeTitle('My Favorites')"><li class="toggleMenu">My Favorites</li></a>
+              </ul>
+            </div>
+
+            <div class="ng-view"></div>
+
+        </div>
     </div>
 
 </body>

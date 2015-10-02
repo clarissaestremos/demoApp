@@ -1,6 +1,5 @@
 myApp.service('DataService', function($http, $q) {
     var self = this;
-    var db = window.openDatabase("DB name",1, "Display name",200000);
     
     self.getData = function(){
         
@@ -18,10 +17,9 @@ myApp.service('DataService', function($http, $q) {
 
 myApp.service('SearchService', function($http, $q) {
     
-    var db = window.openDatabase("DB name",1, "Display name",200000);
     var self = this;
 
-    self.search= function(keyword) {   
+    self.search= function(keyword,db) {   
         
             var deferred = $q.defer();
             db.transaction(function(transaction) {
@@ -47,7 +45,7 @@ myApp.service('SearchService', function($http, $q) {
             return deferred.promise;
     }
     
-    self.searchFTS= function(keyword) {
+    self.searchFTS= function(keyword,db) {
             
         
             var deferred = $q.defer();
@@ -81,10 +79,9 @@ myApp.service('SearchService', function($http, $q) {
 
 myApp.service('SaveService', function($http, $q) {
     
-    var db = window.openDatabase("DB name",1, "Display name",200000);
     var self = this;
 
-    self.saveData= function(result) {   
+    self.saveData= function(result,db) {   
         
             var deferred = $q.defer();
             db.transaction(function(transaction){
@@ -93,31 +90,20 @@ myApp.service('SaveService', function($http, $q) {
                 transaction.executeSql("drop table songArtist",[],function(){alert("dropped");},function(e){alert(e.message);});
                 transaction.executeSql("drop table artistsearch",[],function(){alert("dropped");},function(e){alert(e.message);});
                 */ 
-                transaction.executeSql("create table if not exists songArtist(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT)",[],function(){console.log("created");},function(){console.log("error create");});
+                transaction.executeSql("create table if not exists songArtist(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT)");
+                transaction.executeSql("CREATE VIRTUAL TABLE artistsearch USING fts3(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT);");
                 transaction.executeSql("select * from songArtist", [], function(transaction,res) {
                     alert(res.rows.length);
-                    if (res.rows.length<1){ //first time to use the app
-                    transaction.executeSql("CREATE VIRTUAL TABLE artistsearch USING fts3(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT);");         
-                        /*for(d of result){
                         
-                            if(d.id>93000){
-                                console.log("insert");
-                                transaction.executeSql("INSERT INTO songArtist (name, picture) values ('"+d.name+"', '"+d.picture+"')");
-                                transaction.executeSql("INSERT INTO artistsearch (id, name, picture) values ("+d.id+",'"+d.name+"', '"+d.picture+"')");
-                            }
-                        }*/
-                        angular.forEach(result, function(d,key){
-                           if(d.id>80000){
-                                console.log("insert");
-                                transaction.executeSql("INSERT INTO songArtist (name, picture) values ('"+d.name+"', '"+d.picture+"')");
-                                transaction.executeSql("INSERT INTO artistsearch (id, name, picture) values ("+d.id+",'"+d.name+"', '"+d.picture+"')");         
-                            }
+                    angular.forEach(result, function(d,key){
+                        if(d.id>80000){
+                            transaction.executeSql("INSERT INTO songArtist (id,name, picture) values ("+d.id+",'"+d.name+"', '"+d.picture+"')");
+                            transaction.executeSql("INSERT INTO artistsearch (id, name, picture) values ("+d.id+",'"+d.name+"', '"+d.picture+"')");
+                        }
                             
-                        });
-                    }
+                    });
+                    
                     deferred.resolve();
-                },function(e){
-                    alert(e.message);
                 });
             });
             
@@ -130,28 +116,23 @@ myApp.service('SaveService', function($http, $q) {
 });
 myApp.service('BrowseService', function($http, $q) {
     
-    var db = window.openDatabase("DB name",1, "Display name",200000);
     var self = this;
     
-    self.browse = function() {   
+    self.browse = function(db) {   
         
             var deferred = $q.defer();
             db.transaction(function(transaction) {
 
-              var str="select * from songArtist order by name limit 100";
+              var str="select * from songArtist order by name";
                 
                 transaction.executeSql(str,[], function(transaction, result) {
                     var responses = [];
-                    for (var i = 0; i < result.rows.length; i++) {
-                        
-                        responses.push(result.rows.item(i));
-                        
+                    for (var i = 0; i < result.rows.length; i++) {   
+                        responses.push(result.rows.item(i));    
                     }
             
                     deferred.resolve({response: responses}); //at the end of processing the responses
                     
-                },function(e){
-                    alert(e.message);
                 });
             });
             

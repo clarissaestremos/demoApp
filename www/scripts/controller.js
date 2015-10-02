@@ -1,32 +1,12 @@
 myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','SearchService','SaveService', 'BrowseService', function(supersonic, DataService, $scope, SearchService,SaveService, BrowseService) {
 
     var db = window.openDatabase("DB name",1, "Display name",200000);
-    
     var startRep;
     
     $scope.navbarTitle = "Home";
-    
-    $scope.changeToHome = function() {
-        $scope.navbarTitle = "Home";  
-    };
-    
-    $scope.changeToAbout = function() {
-        $scope.navbarTitle = "About";  
-    };
-    $scope.changeToBrowse = function() {
-        $scope.navbarTitle = "Browse";  
-    };
-    
-    $scope.changeToSearch = function() {
-        $scope.navbarTitle = "Search";  
-    };
-    $scope.changeToContact = function() {
-        $scope.navbarTitle = "Contact";  
-    };
-    
-    $scope.changeToFavorite = function() {
-        $scope.navbarTitle = "My Favorites";  
-    };
+    $scope.changeTitle = function(title){
+        $scope.navbarTitle = title;
+    }
     
     var list = [];
     $scope.browseArtist = [];
@@ -43,11 +23,14 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     $scope.search_input="";
     $scope.pageSize = 100;
     $scope.maxSize = 3;
+    $scope.allData = [];
+    
 
     $scope.$watch('online', function(newStatus) {});
     
     $scope.loader = {
-      loading: true
+        loading: true,
+        notLoading: false
     };
     
     $scope.searchLoader = {
@@ -58,28 +41,33 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
       loading: false
     };
     
-    DataService.getData().then(function(data) {
-
-
-            $scope.browseArtist = data;
-            SaveService.saveData(data);
-            $scope.loader.loading = false;
-            /*var nativeJavascriptListArtist = data;
-            var ul = document.getElementById("nativeAddArtist");
-
-            for (var p in nativeJavascriptListArtist) {
-                if( nativeJavascriptListArtist.hasOwnProperty(p) ) {
-                  ul.innerHTML += "<a class='item item-thumbnail-left'><img src='"+nativeJavascriptListArtist[p].picture+"'/><h2>"+nativeJavascriptListArtist[p].name+"</h2></a>";
-                } 
-              }*/ 
+    BrowseService.browse(db).then(function(data) {
+        console.log("successBrowse");
+        $scope.allData = data.response;
+        $scope.loader.loading = false;
+        $scope.loader.notLoading = true;
+    },function(){
+        
+        DataService.getData().then(function(data) {
+                
+                $scope.allData = data;
+                console.log("successGet");
+            
+            SaveService.saveData(data,db).then(function(){
+                console.log("successSave");
+                $scope.loader.loading = false;
+                $scope.loader.notLoading = true;
+            });
                         
         }, function(reason) {
             alert("There something wrong in the server or the connection.");
-        });  
+        });
+    
+    });
     
     $scope.search = function(search_input) {
         $scope.searchLoader.loading = true;
-            SearchService.search(search_input).then(function(d) {
+            SearchService.search(search_input,db).then(function(d) {
                 $scope.searchLoader.loading = false;
                 $scope.listOfArtist = d.response;
                 var length = $scope.listOfArtist.length;
@@ -95,15 +83,13 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
                 if($scope.numDataMore>0)
                     $scope.showButton=true;
                 
-            },function(e){alert(e.message);});
+            });
         }
     
-
     $scope.browseNative = function() {
         
-        BrowseService.browse().then(function(data) {
-
-            var nativeJavascriptListArtist = data.response;
+            console.log("browseNative");
+            var nativeJavascriptListArtist = $scope.allData.slice(0,100);
             var ul = document.getElementById("nativeAddArtist");
             var start = new Date().getTime();
             
@@ -116,39 +102,20 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
             var end = new Date().getTime();
             var time = end - start;
             alert('Execution time: ' + time + ' milliseconds');
-            
-        }, function(reason) {
-            alert("There something wrong in the server or the connection.");
-        }); 
 
-    };
+    }
     
     $scope.browseRepeat = function() {
-            BrowseService.browse().then(function(data) {
-                
-            startRep = new Date().getTime();
-            $scope.browseArtist = data.response;
             
-        }, function(reason) {
-            alert("There something wrong in the server or the connection.");
-        }); 
-    };
-
-    
-    $scope.searchPage = function() {
-        var view = new steroids.views.WebView("index.html#/search");
-        steroids.drawers.hide({center: view});
-        /*console.log("clicked");
-        console.log($location.path());
-        $location.path('/search');
-        $location.replace();
-        
-        console.log($location.path());*/
+        startRep = new Date().getTime();
+        $scope.browseArtist.result= $scope.allData.slice(0,100);
+        console.log($scope.browseArtist);
+            
     }
     
     $scope.searchFTS = function(search_input){
         $scope.searchFTSLoader.loading = true;
-        SearchService.searchFTS(search_input).then(function(d) {
+        SearchService.searchFTS(search_input,db).then(function(d) {
                 $scope.searchFTSLoader.loading = false;
                 $scope.listOfArtistFTS = d.response;
                 var length = $scope.listOfArtistFTS.length;
@@ -306,7 +273,7 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
 ////    });
 //        }
         
-$scope.sample = function(){
+    $scope.sample = function(){
         $scope.data1 = "Data1";   
         
     }
@@ -333,5 +300,9 @@ $scope.sample = function(){
  $("#btnClick").on('click',function(e){
          document.getElementById("data").innerHTML = "Data2" ;
     });
+    
+ $(".toggleMenu").click(function() {
+                   $(".ham_menu").toggleClass("menuClosed");
+                });
    
 }]);
