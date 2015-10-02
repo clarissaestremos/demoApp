@@ -1,38 +1,4 @@
-/*
-.menu{
-    overflow-x: hidden;
-    position: relative;
-    left: 0;
-}
-.menu-open{
-    left: 231px;
-}
 
-.menu-open .menu-side{
-    left: 0;
-}
-
-.menu-side,.menu{
-    -webkit-transition: left 0.2s ease;
-    -moz-transition: left 0.2s ease;
-    transition: left 0.2s ease;
-}
-
-.menu-side{
-    background-color: black;
-    border-right: 1px solid #000;
-    color: #fff;
-    position: fixed;
-    top: 0;
-    left: -231px;
-    width: 210px;
-    height: 100%;
-    padding: 10px;
-}
-*/
-/**
- * Menu overview.
- */
 /* -----------------------------------------------------------------------------
  
 
@@ -79,54 +45,6 @@ html, body {
           transition: transform 0.3s;
 }
 
-/******************************************************************************************************************************/
-/*                                                SUB NAVIGATION OBJECT                                                       */
-/******************************************************************************************************************************/
-/*.o-sub-nav {
-  margin: 0 0 24px 0;
-  padding: 0;
-}*/
-/*
-.o-sub-nav__items {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-flow: row wrap;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.o-sub-nav__item {
-  margin: 0;
-  padding: 4px;
-}
-
-.o-sub-nav__link {
-  display: block;
-  margin: 0;
-  padding: 4px 24px;
-  border: solid 2px #67b5d1;
-}
-
-.o-sub-nav__link:hover,
-.o-sub-nav__item.active .o-sub-nav__link {
-  color: #fff;
-  background-color: #67b5d1;
-}
-
-@media all and (min-width: 720px) {
-  .o-sub-nav {
-    margin: 0 0 48px 0;
-  }
-}*/
 /******************************************************************************************************************************/
 /*                                                   FOOTER OBJECT                                                            */
 /******************************************************************************************************************************/

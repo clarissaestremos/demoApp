@@ -54,3 +54,31 @@ myApp.config(function($routeProvider) {
     })
     
 });
+
+/*myApp.config(function($stateProvider,$urlRouterProvider) {
+    
+    $urlRouterProvider.otherwise('/home');
+    
+    $stateProvider
+      .state('home', { 
+          url: "/home",
+          templateUrl: 'pages/index1.html',
+          controller: 'IndexController'
+      })
+    .state('browse', { 
+          url: "/browse",
+          templateUrl: 'pages/browse.html',
+          controller: 'IndexController'
+      })
+    .state('repeat', { 
+          url: "/repeat",
+          templateUrl: 'pages/repeat.html',
+          controller: 'IndexController'
+      })
+    .state('search', { 
+          url: "/search",
+          templateUrl: 'pages/search.html',
+          controller: 'IndexController'
+      });
+
+});*/

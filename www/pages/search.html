@@ -10,8 +10,9 @@
 
     <div class="row">
         <div class="col">
-<!--            <div id ="ngClick" class="button button-full button-positive" ng-click="search()">Ng-click</div>-->
-<!--            <div>Fetched {{numData1}} data in {{timer}}s</div><br/>-->
+
+            <div id ="ngClick" class="button button-full button-positive" ng-click="search()">Using 'LIKE'</div><br/>
+            <div ng-if="searchClicked">Showing {{pages1}} out of {{numData1}} data</div><br/>
 
             <ul><li ng-repeat="item in listOfArtist1">    
                 <div class="card">
@@ -26,11 +27,16 @@
                       </div>
                 </div>
             </li></ul>
+            <div ng-if="showButton">
+                <button ng-click="moreItem()">Show {{numDataMore}} more</button>
+            </div>
         </div>
     
     <div class="col">
-<!--        <button class="btn button button-full button-positive">Button click</button><br/>-->
-<!--        <div>Fetched {{numData2}} data in {{timer2}}s</div><br/>-->
+
+        <button ng-click="searchFTS()" class="button button-full button-positive">Full Text Search</button><br/>
+        <div ng-if="searchFTSClicked">Showing {{pages2}} out of {{numData2}} data</div><br/>
+
         <ul><li ng-repeat="item in listOfArtist2">    
             <div class="card">
                   <div class="item item-divider">
@@ -44,9 +50,11 @@
                   </div>
             </div>
         </li></ul>
+        <div ng-if="showButtonFTS">
+                <button ng-click="moreItem2()">Show {{numDataMore2}} more</button>
+        </div>
     </div>
 
     
     </div>
-</div>    
-   
+</div>
