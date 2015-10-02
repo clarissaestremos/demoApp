@@ -1,249 +1,175 @@
-
-/* -----------------------------------------------------------------------------
- 
-
-/******************************************************************************************************************************/
-/*                                                    WELCOME PAGE                                                            */
-/******************************************************************************************************************************/
-
-.welcome-container {
-    width: 100%;
-    margin-top: 100px;
-    margin-left: 40px;
-    text-align: center;
-    color: #4D4D4D;
-}
-
-.search-container {
-    width: 118% !important;
-}
-.row{
-    width: 108% !important;
-}
-.command-btn {
-    width: 250px;
-}
-
-.move-downwards {
-    margin-top: 50px;   
-}
-
 /******************************************************************************************************************************/
 /*                                                  ROOT ELEMENTS                                                             */
 /******************************************************************************************************************************/
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.ham_nav {
+    position: relative;
+    float: none;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    height: 56px;
+    width: 100.5%;
+    line-height: 56px;
+    background: #2C2C2F;
+    color: #ffffff;
+}
+
+#nativeAddArtist {
+    max-width: 100%;
+    height: 100px;
+}
+
+#dummy_div {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0px;
+}
+
+#ham_icon {
+    margin-left: 10px;
+    height: 40px;
+    width: 50px;
+    border: none;
+    float: left;
+    background-color: #2C2C2F;
+}
+
+#ham_icon img {
+    margin-top: 7px;
+    height: 100%;
+    width: 100%;
+}
+
+.chooseTabs {
+    line-height: 50px;
+}
+
+#title_nav {
+    float: left;
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+.tabs-top2, .tabs-top3 {
+    border-left: 1px solid #C4C4C4;
+}
+
+.tabs-top1, .tabs-top2, .tabs-top3 {
+    width: 33.33%;
+    height: 50px;
+    float: left;
+    font-family: sans-serif;
+    text-align: center;
+    border-bottom: 1px solid #C4C4C4;
+}
+
+.tabs-top1 a, .tabs-top2 a, .tabs-top3 a {
+    text-decoration: none;
+    color: #1A1A1A;
+}
+
+.tabs-top1 a:active, .tabs-top2 a:active, .tabs-top3 a:active {
+    color: #858585;
+}
+
+#active {
+    border-bottom: 5px solid #9C9C9C;
+}
+
+.toggleMenu {
+    padding: 2px;
+    border-bottom: 1px solid #292929;
+    padding-left: 10px;
+}
+
+.fav-container {
+    position: relative;
+    top: 30px;
+    padding: 20px;
+    text-align: center;
 }
 
 /******************************************************************************************************************************/
-/*                                                 WRAPPER OBJECT                                                             */
+/*                                                    WELCOME PAGE                                                            */
 /******************************************************************************************************************************/
-.o-wrapper {
-  -webkit-transition: -webkit-transform 0.3s;
-          transition: transform 0.3s;
+
+.welcome-container {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    color: #474747;
 }
 
-/******************************************************************************************************************************/
-/*                                                   FOOTER OBJECT                                                            */
-/******************************************************************************************************************************/
-.o-footer {
-  padding: 12px 0;
-  text-align: center;
+.welcome-container img {
+    border-radius: 5px;
 }
 
-@media all and (min-width: 480px) {
-  .o-footer {
-    padding: 24px 0;
-  }
+.search-container {
+    width: 100% !important;
 }
-@media all and (min-width: 720px) {
-  .o-footer {
-    padding: 48px 0;
-  }
+.row{
+    width: 100% !important;
+    margin-left: 0px !important;
 }
 
-/******************************************************************************************************************************/
-/*                                              SLIDE AND PUSH COMPONENTS                                                     */
-/******************************************************************************************************************************/
-/**
- * Menu overview.
- */
-.c-menu {
-  position: fixed;
-  z-index: 200;
-  background-color: #67b5d1;
-  -webkit-transition: -webkit-transform 0.3s;
-          transition: transform 0.3s;
+.card{
+    margin: 0px 0px !important;
 }
 
-.c-menu__items {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.command-btn {
+    width: 250px;
 }
 
-/**
- * Left and right menus
- *
- * Slide and push menus coming in from the left and right inherit a lot of
- * common styles. We'll start each of them off by doing up the common styles
- * for each version, followed by individual styles.
- *
- * The various versions are governed by modifier classes.
- */
-/**
- * Common modifiers for left/right menus.
- */
-.c-menu--slide-left{
-  width: 100%;
-  height: 100%;
-  overflow-y: scroll;
-}
-@media all{
-  .c-menu--slide-left{
-    width: 230px;
-  }
+.move-downwards {
+    margin-top: 50px; 
 }
 
-.c-menu--slide-left .c-menu__item{
-  display: block;
-  text-align: center;
-  border-top: solid 1px #b5dbe9;
-  border-bottom: solid 1px #3184a1;
-}
-.c-menu--slide-left .c-menu__item:first-child{
-  border-top: none;
-}
-.c-menu--slide-left .c-menu__item:last-child{
-  border-bottom: none;
+.anon img {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
 }
 
-.c-menu--slide-left .c-menu__link{
-  display: block;
-  padding: 12px 24px;
-  color: #fff;
+.anon .btn {
+    margin-left: 40px;
 }
 
-.c-menu--slide-left .c-menu__close{
-  display: block;
-  padding: 12px 24px;
-  width: 100%;
-}
-
-/**
- * Slide/Push Menu Left.
- */
-.c-menu--slide-left{
-  top: 0;
-  left: 0;
-  -webkit-transform: translateX(-100%);
-      -ms-transform: translateX(-100%);
-          transform: translateX(-100%);
-}
-@media all{
-  .c-menu--slide-left{
-    -webkit-transform: translateX(-231px);
-        -ms-transform: translateX(-231px);
-            transform: translateX(-231px);
-  }
-}
-
-.c-menu--slide-left.is-active{
-  -webkit-transform: translateX(0);
-      -ms-transform: translateX(0);
-          transform: translateX(0);
-}
-
-/**
- * Body states.
- *
- * When a menu is active, we want to hide the overflows on the body to prevent
- * awkward document scrolling.
- */
-body.has-active-menu {
-  overflow: hidden;
-}
-
-/**
- * Close button resets.
- */
-.c-menu__close {
-  color: #fff;
-  background-color: #3184a1;
-  font-size: 14px;
-  border: none;
-  box-shadow: none;
-  border-radius: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  cursor: pointer;
-}
-
-.c-menu__close:focus {
-  outline: none;
-}
-
-/******************************************************************************************************************************/
-/*                                                    MASK COMPONENT                                                          */
-/******************************************************************************************************************************/
-.c-mask {
-  position: fixed;
-  z-index: 100;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  width: 0;
-  height: 0;
-  background-color: #000;
-  opacity: 0;
-  -webkit-transition: opacity 0.3s, width 0s 0.3s, height 0s 0.3s;
-          transition: opacity 0.3s, width 0s 0.3s, height 0s 0.3s;
-}
-
-.c-mask.is-active {
-  width: 100%;
-  height: 100%;
-  opacity: 0.7;
-  -webkit-transition: opacity 0.3s;
-          transition: opacity 0.3s;
+.btnpagination {
+    position: relative;
+    left: 22%;
+    margin-top: 30px;
 }
 
 /******************************************************************************************************************************/
 /*                                                    BUTTONS                                                                 */
 /******************************************************************************************************************************/
 
-.c-button {
-  display: inline-block;
-  background: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  cursor: pointer;
-}
-
-.c-button:focus {
-  outline: none;
-}
-
-.c-button:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
 .btn:active{
     opacity: 0.3; 
 }
+
 
 #ngClick:active{
    opacity: 0.3;   
 }
 
-/* -----------------------------------------------------------------------------
-  CONTENT
------------------------------------------------------------------------------ */
+/******************************************************************************************************************************/
+/*                                                    CONTENT                                                                 */
+/******************************************************************************************************************************/
 
 /*#container1, #container2{
     float: left;
@@ -256,21 +182,9 @@ body.has-active-menu {
     height: 50px;
 }
 
-/*.search-artist-container {
-    height: 100px;
-    width: 250px;
-    margin-top: 30px;
-    margin-left: 50px;
-    text-align: center;
-}
-
-.search-artist-container input {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}*/
-
-/***************************/
+/******************************************************************************************************************************/
+/*                                                    ARRANGE THIS                                                                 */
+/******************************************************************************************************************************/
 
 .inputBox {
     border-bottom: 1px solid #444444;
@@ -280,11 +194,115 @@ body.has-active-menu {
     width: 150px;
     height: 150px;
 }
-    
-.supNavbar {
-    padding: 0;
-    margin: 0;
-    width: 118%;
-    background-color: blueviolet;
+
+#timer, #timer2{
+    color: gray;
+    font-size: 12px;
 }
-    
+
+#delay, #content, #content1{
+    display: inline;
+}
+
+#content, #content1{
+    color: gray;
+    font-size: 15px;
+}
+#data, #data1{
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+/******************************************************************************************************************************/
+/*                                                    HAMBURGER MENU                                                                 */
+/******************************************************************************************************************************/
+
+.ham_menu {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    width: 60%;
+    height: 92%;
+    line-height: 56px;
+    background-color: #1C1D21;
+    color: #ffffff;
+    font-size: 20px;
+    z-index: 200;
+}
+
+.ham_menu a {
+    color: #ffffff;
+}
+
+.menuClosed {
+    -ms-transform: translate(-100%,0); /* IE 9 */
+   	-webkit-transform: translate(-100%,0); /* Safari */
+    transform: translate(-100%,0);
+}
+
+#designHam {
+   width: 100px; 
+}
+
+
+.favorite-bootstrap3-container {
+    position: relative;
+    top: 20px;
+    padding: 20px;
+}
+
+.favorite-bootstrap2-container {
+    position: relative;
+    top: 20px;
+    padding: 20px;
+}
+
+#top1 {
+    width: 300px;
+    height: 250px;
+}
+
+#artist1 {
+    margin-bottom: 30px;
+}
+
+.top9-container img {
+    width: 100px;
+    height: 100px;
+}
+
+.dlBtn {
+    background-color: gray;
+}
+
+#hideProgress {
+    display: none;
+}
+
+#p-bar {
+    width: 0; 
+    height: 20px; 
+    margin-left: 20px; 
+    border-radius: 5px; 
+}
+
+#success-loaded {
+    display: none;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+

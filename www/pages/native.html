@@ -1,6 +1,25 @@
-DANICA LIST NATIVE
-
-    <div class="nativeJavascript-container">
-        <ul id="nativeAddArtist">
-        </ul>
+<div class="chooseTabs">
+    <a href="#/browse">
+    <div class="tabs-top1">
+        Browse
     </div>
+    </a>
+    <a href="#/native">
+    <div id="active" class="tabs-top2">
+        Javascript
+    </div>
+    </a>
+    <a href="#/repeat">
+    <div class="tabs-top3">
+        Ng-repeat
+    </div>
+    </a>
+</div>
+
+<button ng-click="browseNative()">SHOW RESULTS</button>
+
+<div class="list">
+    <ul id="nativeAddArtist">
+    </ul>
+</div>
+

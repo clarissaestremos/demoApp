@@ -18,86 +18,50 @@
   <script src="/components/supersonic/supersonic.js"></script>
   <script src="/components/webcomponentsjs/webcomponents.js"></script>
   <script src="https://code.angularjs.org/1.3.0-rc.1/angular-route.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
-
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+  <script src="scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
   <script src="/scripts/application.js"></script>
-    <script src="/scripts/route.js"></script>
-    <script src="/scripts/service.js"></script>
-    <script src="/scripts/controller.js"></script>
+  <script src="scripts/directive.js"></script>
+  <script src="/scripts/route.js"></script>
+  <script src="/scripts/service.js"></script>
+  <script src="/scripts/controller.js"></script>
 </head>
     
-<body class="menu" ng-app="SteroidsApplication">
+<body ng-app="SteroidsApplication">
 
-    <div class="padding" ng-controller="IndexController">
+    <div ng-controller="IndexController">
 
-        <super-navbar>
-          <super-navbar-button side="left">
-                Right
-            </super-navbar-button>
-            <super-navbar-title ng-bind="navbarTitle">
-            
-        </super-navbar-title>
-        </super-navbar>
-
-        <div id="o-wrapper" class="o-wrapper">
-
-          <div class="c-buttons">
-            <button id="c-button--slide-left" class="c-button button icon super-navicon button-positive"></button>
-          </div>
-
-          <!-- other content in here -->
-
-        </div><!-- /o-wrapper -->
-
-        <!-- menus here -->
-        <nav id="c-menu--slide-left" class="c-menu c-menu--slide-left">
-          <button class="c-menu__close">&larr; Close Menu</button>
-          <ul class="c-menu__items">
-<!--
-            <li class="c-menu__item"><a class="c-menu__link" ui-sref="home" onclick="closing()">Home</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/about" onclick="closing()">About</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" ui-sref="browse" onclick="closing()">Browse</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" ng-click="searchPage()" onclick="closing()">Search</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/contact" onclick="closing()">Contact</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/favorite" onclick="closing()">My Favorites</a></li>
--->
-
-            <li class="c-menu__item"><a class="c-menu__link" href="#/home" ng-click="changeToHome()" onclick="closing()">Home</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/about" ng-click="changeToAbout()" onclick="closing()">About</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/browse" ng-click="changeToBrowse()" onclick="closing()">Browse</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/search" ng-click="changeToSearch()" onclick="closing()">Search</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/contact" ng-click="changeToContact()" onclick="closing()">Contact</a></li>
-            <li class="c-menu__item"><a class="c-menu__link" href="#/favorite" ng-click="changeToFavorite()" onclick="closing()">My Favorites</a></li>
-          </ul>
-        </nav><!-- /c-menu slide-left -->
-
-        <div id="c-mask" class="c-mask"></div><!-- /c-mask -->
+        <div class="ham_nav">
+            <button id="ham_icon" class="toggleMenu">
+                <img src="images/hamburger-icon.svg"/>
+            </button>
+            <div id="title_nav" ng-bind="navbarTitle"></div>
+        </div>
+        <br/>
+        <button ng-show="loader.loading" class="button button-outline button-stable center"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button>
+        <br/>
         
-        <div ui-view></div>
-        <div ng-view></div>
+        <div id="dummy_div"></div>
 
-        <script src="/scripts/menu.js"></script>
+        <div class="ham_menu menuClosed">
+          <ul class="menu_items">
+            <a href="#/home" ng-click="changeToHome()"><li class="toggleMenu">Home</li></a>
+            <a href="#/about" ng-click="changeToAbout()"><li class="toggleMenu">About</li></a>
+            <a href="#/browse" ng-click="changeToBrowse()"><li class="toggleMenu">Browse</li></a>
+            <a href="#/search" ng-click="changeToSearch()"><li class="toggleMenu">Search</li></a>
+            <a href="#/setting" ng-click="changeToSetting()"><li class="toggleMenu">Setting</li></a>
+            <a href="#/favorite" ng-click="changeToFavorite()"><li class="toggleMenu">My Favorites</li></a>
+          </ul>
+        </div>
+
+        <div class="ng-view"></div>
+        
         <script>
-            var slideLeft = new Menu({
-                wrapper: '#o-wrapper',
-                type: 'slide-left',
-                menuOpenerClass: '.c-button',
-                maskId: '#c-mask'
-              });
-              var slideLeftBtn = document.querySelector('#c-button--slide-left');
-              var linkBtn = document.querySelector('.c-menu__link');
-
-              slideLeftBtn.addEventListener('click', function(e) {
-                e.preventDefault;
-                slideLeft.open();
-              });
-
-            function closing(){
-                slideLeft.close();
-            }
+            $(".toggleMenu").click(function() {
+               $(".ham_menu").toggleClass("menuClosed");
+            });
         </script>
-
+        
     </div>
 
 </body>
