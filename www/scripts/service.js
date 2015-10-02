@@ -6,7 +6,7 @@ myApp.service('DataService', function($http, $q) {
         var deferred = $q.defer(),
             url = 'https://glacial-harbor-7075.herokuapp.com/musicArtist/list';
         $http.get(url).success(function(result){
-                    deferred.resolve(result);
+                deferred.resolve();
         }).error(function(err){
             deferred.reject(err);     
         });

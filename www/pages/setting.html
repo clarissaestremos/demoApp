@@ -1,0 +1,48 @@
+
+<div class="contact-container">
+   <div class="row">
+        <div class="col">
+           <div id="data1">Show all artist <div id="content">{{data1}}</div></div><br/>
+        </div>
+        <div class="col">
+             <div id ="ngClick" class="button button-full button-dark" ng-click="sample()" test-directive="touchStart()" touch-end = "touchEnd()">Ng-click</div>
+            <div id ="timer">Delay[Ng-click]: {{timer1}}ms</div>
+            <hr>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col">
+            <div id="data">Group by Genre <div id="content1"></div></div><br/>
+        </div>
+        <div class="col">
+            <button id ="btnClick" class="btn button button-full button-dark">Button click</button><br/>
+             <div id ="timer2">Delay[JQuery click]: <div id="delay"></div>ms</div>
+            <hr>
+            
+        </div>
+        
+    </div>
+    <br/><br/>
+    
+    
+    <script>
+        var timer2 = "Off";
+        document.getElementById("content1").innerHTML = timer2;
+        $("#btnClick").on('touchstart',function(e){
+                timer2 = Date.now();
+        }).on('touchend',function(e){
+               timer2 = Date.now() - timer2;
+                document.getElementById("delay").innerHTML = ""+timer2;
+        });
+        $("#btnClick").on('click',function(e){
+            if(document.getElementById("content1").innerHTML == "Off"){
+                document.getElementById("content1").innerHTML = "On" ;
+            }else{
+                document.getElementById("content1").innerHTML = "Off" ;
+            }
+             
+        });
+    </script>
+</div>
+

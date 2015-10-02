@@ -1,5 +1,7 @@
-myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','SearchService','SaveService', 'BrowseService', function(supersonic, DataService, $scope, SearchService,SaveService, BrowseService) {
 
+myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','SearchService','SaveService', 'BrowseService', function(supersonic, DataService, $scope, SearchService,SaveService, BrowseService) {
+    
+    
     var db = window.openDatabase("DB name",1, "Display name",200000);
     var startRep;
     
@@ -65,10 +67,12 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     
     });
     
+
     $scope.search = function(search_input) {
         $scope.searchLoader.loading = true;
             SearchService.search(search_input,db).then(function(d) {
                 $scope.searchLoader.loading = false;
+
                 $scope.listOfArtist = d.response;
                 var length = $scope.listOfArtist.length;
                 $scope.pages1 = 10;
@@ -132,6 +136,7 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
                 
             },function(e){alert(e.message);});
     }
+
     
     $scope.moreItem = function(){
         
@@ -163,7 +168,7 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
         
     }
     
-    var onoff = 0;
+        var onoff = 0;
     
     $(".dlBtn").click(function(){
         if(onoff == 0) {
@@ -180,6 +185,7 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     });
     
     var varCounter = 0;
+
 
     var increaseBar = function(){
      if(varCounter <= 5) {
@@ -217,92 +223,33 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
         alert('Execution time: ' + time + ' milliseconds');
     });
     
-//    $scope.sample = function(){
-//        $scope.data1 = "Data1";   
-//        
-//    }
-//    
-//    $scope.touchStart = function() {
-//        $scope.timer1 = new Date().getTime();
-//    }
-//
-//    $scope.touchEnd = function() {
-//        $scope.timer1 = (new Date().getTime()) - $scope.timer1;
-//    }
-//    
-//    var timer2;
-////    $("#btnClick").on('touchstart',function(e){
-//////         $scope.$apply(function () {  
-////            timer2 = new Date().getTime();
-////    }).on('touchend',function(e){
-//////        $scope.$apply(function () {  
-////           timer2 = (new Date().getTime()) - timer2;
-////            document.getElementById("delay").innerHTML = "Delay: "+timer2+"ms";
-////        
-//////        });
-////    });
-//    $("#btnClick").on('click',function(e){
-//         document.getElementById("data").innerHTML = "Data2" ;
-//    });
-//    
-//        $('#autoStart').click(function(){
-//            start();
-////            setTimeout(start, 2000);
-////             $("#btnClick").on('touchend',function(e){
-////timer2 = (new Date().getTime()) - timer2;
-////            document.getElementById("delay").innerHTML = "Delay: "+timer2+"ms";
-//////        
-////    });
-//        });
-//    
-//   
-//           
-//        function start() {
-////            $("#btnClick").click();
-//            $("#btnClick").on('click',function(e){
-//         document.getElementById("data").innerHTML = "Data2" ;
-//                timer2 = new Date().getTime();
-//                setTimeout(function(){
-//                timer2 = (new Date().getTime()) - timer2;
-//                }, 2000);
-//    });
-////            $("#ngClick").click();
-////            $("#btnClick").on('touchstart',function(e){
-//////         $scope.$apply(function () {  
-////            timer2 = new Date().getTime();
-////    });
-//        }
-        
+    $scope.data1 = "Off"; 
     $scope.sample = function(){
-        $scope.data1 = "Data1";   
+        if($scope.data1 == "Off"){
+            $scope.data1 = "On"; 
+        }else{
+            $scope.data1 = "Off";
+        }
+          
         
     }
     
     $scope.touchStart = function() {
-        $scope.timer1 = Date.now();
+        $scope.timer = Date.now();
     }
 
     $scope.touchEnd = function() {
-        $scope.timer1 = Date.now() - $scope.timer1;
+        $scope.timer1 = Date.now() - $scope.timer;
     }
-    
-    var timer2;
-    $("#btnClick").on('touchstart',function(e){
-//         $scope.$apply(function () {  
-            timer2 = Date.now();
-//        });
-    }).on('touchend',function(e){
-//        $scope.$apply(function () {  
-           timer2 = Date.now() - timer2;
-            document.getElementById("delay").innerHTML = "Delay: "+timer2+"ms";
-//        });
-    });
- $("#btnClick").on('click',function(e){
+   
+
+     $("#btnClick").on('click',function(e){
          document.getElementById("data").innerHTML = "Data2" ;
     });
     
- $(".toggleMenu").click(function() {
+    $(".toggleMenu").click(function() {
                    $(".ham_menu").toggleClass("menuClosed");
                 });
-   
 }]);
+
+   

@@ -18,8 +18,8 @@ myApp.config(function($routeProvider) {
         templateUrl: 'pages/search.html'
     })
     
-    .when('/contact', {
-        templateUrl: 'pages/contact.html'
+    .when('/setting', {
+        templateUrl: 'pages/setting.html'
     })
     
     .when('/native', {

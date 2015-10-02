@@ -96,6 +96,7 @@ a {
     padding-left: 10px;
 }
 
+
 .fav-container {
     position: relative;
     top: 30px;
@@ -162,6 +163,7 @@ a {
     opacity: 0.3; 
 }
 
+
 #ngClick:active{
    opacity: 0.3;   
 }
@@ -194,6 +196,24 @@ a {
     height: 150px;
 }
 
+#timer, #timer2{
+    color: gray;
+    font-size: 12px;
+}
+
+#delay, #content, #content1{
+    display: inline;
+}
+
+#content, #content1{
+    color: gray;
+    font-size: 15px;
+}
+#data, #data1{
+    margin-top: 15px;
+    font-size: 20px;
+}
+
 /******************************************************************************************************************************/
 /*                                                    HAMBURGER MENU                                                                 */
 /******************************************************************************************************************************/
@@ -217,6 +237,10 @@ a {
     color: #ffffff;
 }
 
+.ham_menu a:active{
+    color: #000000;
+}
+
 .menuClosed {
     transform: translate(-100%,0);
 }
@@ -225,6 +249,11 @@ a {
    width: 100px; 
 }
 
+
+.menu_items li:active{
+    background-color: #4D4D4D;
+
+}
 
 .favorite-bootstrap3-container {
     position: relative;
@@ -285,3 +314,4 @@ a {
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}
 }
+
