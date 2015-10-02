@@ -45,6 +45,10 @@
         "C:/Users/User/Desktop/try/demoApp/dist/scripts/route.js",
         "C:/Users/User/Desktop/try/demoApp/dist/components/angular/angular.min.js",
         "C:/Users/User/Desktop/try/demoApp/dist/components/angular/angular.js",
-        "C:/Users/User/Desktop/try/demoApp/dist/scripts/directive.js"
+        "C:/Users/User/Desktop/try/demoApp/dist/scripts/directive.js",
+        "C:/Users/User/Desktop/try/demoApp/dist/scripts/controller.js",
+        "C:/Users/User/Desktop/try/demoApp/www/scripts/directive.js",
+        "C:/Users/User/Desktop/try/demoApp/dist/components/webcomponentsjs/webcomponents.min.js",
+        "C:/Users/User/Desktop/try/demoApp/dist/scripts/ajax.js"
     ]
 }

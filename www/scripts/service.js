@@ -6,7 +6,7 @@ myApp.service('DataService', function($http, $q) {
         var deferred = $q.defer(),
             url = 'https://glacial-harbor-7075.herokuapp.com/musicArtist/list';
         $http.get(url).success(function(result){
-                deferred.resolve();
+                deferred.resolve(result);
         }).error(function(err){
             deferred.reject(err);     
         });
@@ -94,7 +94,8 @@ myApp.service('SaveService', function($http, $q) {
                 transaction.executeSql("CREATE VIRTUAL TABLE artistsearch USING fts3(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT);");
                 transaction.executeSql("select * from songArtist", [], function(transaction,res) {
                     alert(res.rows.length);
-                        
+                     
+                    alert(result.length);
                     angular.forEach(result, function(d,key){
                         if(d.id>80000){
                             transaction.executeSql("INSERT INTO songArtist (id,name, picture) values ("+d.id+",'"+d.name+"', '"+d.picture+"')");
@@ -133,7 +134,10 @@ myApp.service('BrowseService', function($http, $q) {
             
                     deferred.resolve({response: responses}); //at the end of processing the responses
                     
-                });
+                },function(err){deferred.reject(err);});
+                
+                /*transaction.executeSql("drop table songArtist",[],function(){alert("dropped");},function(e){alert(e.message);});
+                transaction.executeSql("drop table artistsearch",[],function(){alert("dropped");},function(e){alert(e.message);});*/
             });
             
             // Return the promise to the controller

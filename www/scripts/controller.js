@@ -50,6 +50,8 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
         $scope.loader.notLoading = true;
     },function(){
         
+        console.log("error");
+        
         DataService.getData().then(function(data) {
                 
                 $scope.allData = data;
