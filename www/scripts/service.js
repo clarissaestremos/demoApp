@@ -97,7 +97,7 @@ myApp.service('SaveService', function($http, $q) {
                      
                     alert(result.length);
                     angular.forEach(result, function(d,key){
-                        if(d.id>80000){
+                        if(d.id>70000){
                             transaction.executeSql("INSERT INTO songArtist (id,name, picture) values ("+d.id+",'"+d.name+"', '"+d.picture+"')");
                             transaction.executeSql("INSERT INTO artistsearch (id, name, picture) values ("+d.id+",'"+d.name+"', '"+d.picture+"')");
                         }
