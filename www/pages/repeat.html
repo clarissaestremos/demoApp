@@ -1,29 +1,34 @@
 <div class="chooseTabs">
-    <a href="#/browse">
+    <a ng-click="resetBrowseRepeat()" href="#/browse">
     <div class="tabs-top1">
         Browse
     </div>
     </a>
-    <a href="#/native">
+    <a ng-click="resetBrowseRepeat()" href="#/native">
     <div class="tabs-top2">
         Javascript
     </div>
     </a>
-    <a href="#/repeat">
+    <a ng-click="resetBrowseRepeat()" href="#/repeat">
     <div id="active" class="tabs-top3">
         Ng-repeat
     </div>
     </a>
 </div>
 
-<br/><br/>
-<button ng-click="browseRepeat()">SHOW RESULTS</button>
+<br><br><br>
+
+<center>
+<button class="button button-energized button-dark" ng-click="browseRepeat()">SHOW RESULTS</button>
+</center>
+
+<br>
 
 <div id="repeatTime"></div>
 
 <div class="list">
     <ul>
-        <li ng-repeat="artist in browseArtist.result" on-finish-render="ngRepeatFinished">
+        <li ng-repeat="artist in browseArtist" on-finish-render="ngRepeatFinished">
             <a class="item item-thumbnail-left">
               <img src="{{artist.picture}}">
               <h2>{{artist.name}}</h2>

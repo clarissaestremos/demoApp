@@ -1,6 +1,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
-    var startLoad = new Date();
+    var start = new Date().getTime();
+    $('#inputStart').val(start);
 });
 </script>
 
@@ -22,24 +23,34 @@ $(document).ready(function() {
     </a>
 </div>
 
-<div class="favorite-bootstrap3-container">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-    <button type="button" class="btn btn-default">PLAY</button>
+<div class="favorite-bootstrap3-container">
+    
+    <img id="album_cover" src="../images/imaginesmoke.png"/>
+    
+    <br><br>
+
+    <div class="play_buttons">
+    <center>
+        <button class="btn"><img src="../images/play_icon.svg"/></button>
+        <button class="btn"><img src="../images/pause_icon.svg"/></button>
+        <button class="btn"><img src="../images/stop_icon.svg"/></button>
+    </center>   
+    </div>
 
     <br><br>
 
-     DOWNLOAD TRACKS&nbsp;&nbsp;<button class="btn">ON</button>  
+     DOWNLOAD TRACKS&nbsp;&nbsp;<button class="btn dlBtn">OFF</button>  
     <br><br>
     <!-- LAGAY KA DITO NG KUNWARING DOWNLOAD BUTTON TAPOS JAVASCRIPT MO YUNG PROGRESS BAR. MAGPAPAKITA PAG NACLICK YUNG BUTTON -->
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
+    <div class="progress" id="hideProgress">
+      <div id="p-bar" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
       </div>
     </div>
 
-    <!-- TAPOS MAGDIDISPLAY NG SUCCESS PAG NADL NA -->
-
-    <div class="alert alert-success">Success! You have successfully downloaded all the tracks.</div>
-
+    <div class="alert alert-success" id="success-loaded">Success! You have successfully downloaded all the tracks.</div>
+    
     <ul class="anon">
         <li><img src="../images/anonymous.png" />ARTIST'S NAME<button class="btn"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button></li>
         <li><img src="../images/anonymous.png" />ARTIST'S NAME<button class="btn"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button></li>
@@ -58,13 +69,68 @@ $(document).ready(function() {
       </div>
     </div>
 </div>
-     
+    
+    <input id="inputStart" type="hidden" />
+    <input id="inputEnd" type="hidden" />
+    
 </div>
+
 
 <script type="text/javascript">
 $(document).ready(function() {
- // executes when HTML-Document is loaded and DOM is ready
-    var end = new Date();
-    alert(startLoad.getTime() - end.getTime());
+    var end = new Date().getTime();
+    $('#inputEnd').val(end);
+        var strt = $('#inputStart').val();
+        var en = $('#inputEnd').val();
+    var ans = (en - strt);
+    alert("Excecution time: " + ans + " milliseconds");
 });
+    
+    var onoff = 0;
+    
+    $(".dlBtn").click(function(){
+        if(onoff == 0) {
+            $(this).html("ON");
+            onoff = 1;
+            $("#hideProgress").css( "display", "block" );
+            increaseProgress();
+        }
+        else if(onoff == 1) {
+            $(this).html("OFF");
+            $("#hideProgress").css( "display", "none" );
+            onoff = 0;
+        }
+    });
+    
+    var varCounter = 0;
+
+    var increaseBar = function(){
+     if(varCounter <= 5) {
+          ++varCounter;
+          $("#p-bar").css( "width", "+=52%" );
+     } 
+     else if(varCounter == 6){
+          clearInterval(increaseProgress);
+          $("#success-loaded").css( "display", "block" );
+          removeSuccessMessage();    
+          ++varCounter;
+     }
+    };
+    
+    function removeSuccessMessage() {
+        setTimeout(function(){ 
+            $("#success-loaded").css( "display", "none" );
+            removeProgress();
+        }, 3000);
+    };
+    
+    function removeProgress() {
+        setTimeout(function(){ 
+            $("#hideProgress").css( "display", "none" );
+        }, 2000);
+    };
+    
+    function increaseProgress() {
+        setInterval(increaseBar, 1000);          
+    };
 </script>

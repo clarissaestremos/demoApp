@@ -11,7 +11,7 @@ a {
 }
 
 .ham_nav {
-    position: relative;
+    position: fixed;
     float: none;
     display: block;
     top: 0;
@@ -24,6 +24,7 @@ a {
     line-height: 56px;
     background: #2C2C2F;
     color: #ffffff;
+    z-index: 100;
 }
 
 #nativeAddArtist {
@@ -36,7 +37,7 @@ a {
     top: 0;
     left: 0;
     right: 0;
-    height: 0px;
+    height: 56px;
 }
 
 #ham_icon {
@@ -96,7 +97,6 @@ a {
     padding-left: 10px;
 }
 
-
 .fav-container {
     position: relative;
     top: 30px;
@@ -151,7 +151,7 @@ a {
 
 .btnpagination {
     position: relative;
-    left: 22%;
+    left: 20%;
     margin-top: 30px;
 }
 
@@ -215,11 +215,98 @@ a {
 }
 
 /******************************************************************************************************************************/
+/*                                                   ABOUT PAGE                                                               */
+/******************************************************************************************************************************/
+
+.moveImageList {
+    position: relative;
+    top: 50px;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+}
+
+#ari {
+    width: 100px;
+    height: 100px;
+    background: url('../images/ari-res.png');
+    float: left;
+    margin: 10px 10px;
+}
+
+#omi {
+    width: 100px;
+    height: 100px;
+    background: url('../images/omi-res.png');
+    float: left;
+    margin: 10px 10px;
+}
+
+#jess {
+    width: 100px;
+    height: 100px;
+    background: url('../images/jes-res.png');
+    float: left;
+    margin: 10px 10px;
+}
+
+#aris {
+    width: 100px;
+    height: 100px;
+    background: url('../images/sprite-res.png');
+    float: left;
+    margin: 10px 10px;
+}
+
+#omis {
+    width: 100px;
+    height: 100px;
+    background: url('../images/sprite-res.png') 100px 0;
+    float: left;
+    margin: 10px 10px;
+}
+
+#jesss {
+    width: 100px;
+    height: 100px;
+    background: url('../images/sprite-res.png') 200px 0;
+    float: left;
+    margin: 10px 10px;
+}
+
+.httpReq {
+    position: relative;
+    top: 100px;
+    text-align: center;
+    width: 100%;
+    height: 100px;
+}
+
+/******************************************************************************************************************************/
+/*                                                    GRADIENT                                                                */
+/******************************************************************************************************************************/
+
+#grad4 {
+    height: 100px;
+    margin: 1px;
+    background: -webkit-linear-gradient(-90deg, red, blue); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(-90deg, red, blue); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(-90deg, red, blue); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(-90deg, red, blue); /* Standard syntax (must be last) */
+}
+
+.bg-page-container img {
+    width: 100%; 
+    height: 100px; 
+    margin-top: -9px;
+}
+
+/******************************************************************************************************************************/
 /*                                                    HAMBURGER MENU                                                                 */
 /******************************************************************************************************************************/
 
 .ham_menu {
-    position: absolute;
+    position: fixed;
     top: 56px;
     left: 0;
     right: 0;
@@ -230,7 +317,7 @@ a {
     color: #ffffff;
     font-size: 20px;
     z-index: 200;
-    transition: transform .3s ease-in;
+    transition: transform .2s ease-in;
 }
 
 .ham_menu a {
@@ -248,7 +335,6 @@ a {
 #designHam {
    width: 100px; 
 }
-
 
 .menu_items li:active{
     background-color: #4D4D4D;
@@ -281,10 +367,6 @@ a {
     height: 100px;
 }
 
-.dlBtn {
-    background-color: gray;
-}
-
 #hideProgress {
     display: none;
 }
@@ -298,6 +380,21 @@ a {
 
 #success-loaded {
     display: none;
+}
+
+#album_cover {
+    position: relative;
+    left: 4%;
+}
+
+.play_buttons {
+    width: 100%:
+    height: 25px;
+}
+
+.play_buttons img {
+    width: 25px;
+    height: 25px;
 }
 
 .glyphicon-refresh-animate {
@@ -314,4 +411,3 @@ a {
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}
 }
-

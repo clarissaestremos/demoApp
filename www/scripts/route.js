@@ -42,9 +42,24 @@ myApp.config(function($routeProvider) {
         templateUrl: 'pages/favorite3.html'
     })
     
-/*    .when('/about', {
-        templateUrl: 'pages/about.html',
-        controller: 'IndexController'
-    })*/
+    .when('/imagesprites', {
+        templateUrl: 'pages/imagesprites.html'
+    })
+    
+    .when('/justimages', {
+        templateUrl: 'pages/justimages.html'
+    })
+    
+    .when('/playlist', {
+        templateUrl: 'pages/playlist.html'
+    })
+    
+    .when('/gradient', {
+        templateUrl: 'pages/gradient.html'
+    })
+    
+    .when('/bgimage', {
+        templateUrl: 'pages/bgimage.html'
+    })
     
 });
