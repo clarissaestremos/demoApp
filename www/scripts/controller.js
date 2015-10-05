@@ -44,7 +44,7 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     };
     
     BrowseService.browse(db).then(function(data) {
-        console.log("successBrowse");
+        
         $scope.allData = data.response;
         $scope.loader.loading = false;
         $scope.loader.notLoading = true;
@@ -90,7 +90,7 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     
     $scope.browseNative = function() {
         
-            console.log("browseNative");
+            
             var nativeJavascriptListArtist = $scope.allData.slice(0,100);
             var ul = document.getElementById("nativeAddArtist");
             var start = new Date().getTime();
