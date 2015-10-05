@@ -337,6 +337,7 @@ a {
     font-size: 20px;
     z-index: 200;
     transition: transform .2s ease-in;
+    overflow:scroll;
 }
 
 .ham_menu a {
