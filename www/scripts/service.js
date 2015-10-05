@@ -37,7 +37,7 @@ myApp.service('SearchService', function($http, $q) {
                     deferred.resolve({response: responses}); //at the end of processing the responses
                     
                 },function(e){
-                    alert(e.message);
+                    console.log(e.message);
                 });
             });
             
@@ -59,14 +59,13 @@ myApp.service('SearchService', function($http, $q) {
                     for (var i = 0; i < result.rows.length; i++) {
                         
                         responses.push(result.rows.item(i));
-                        /*console.log(result.rows.item(i).id);*/
                         
                     }
                     
                     deferred.resolve({response: responses}); //at the end of processing the responses
                     
                 },function(e){
-                    alert(e.message);
+                    console.log(e.message);
                 });
             });
             
@@ -85,19 +84,12 @@ myApp.service('SaveService', function($http, $q) {
         
             var deferred = $q.defer();
             db.transaction(function(transaction){
-                 console.log("hello");
-                /*alert("hello");
-                transaction.executeSql("drop table songArtist",[],function(){alert("dropped");},function(e){alert(e.message);});
-                transaction.executeSql("drop table artistsearch",[],function(){alert("dropped");},function(e){alert(e.message);});
-                */ 
+                
                 transaction.executeSql("create table if not exists songArtist(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT)");
                 transaction.executeSql("CREATE VIRTUAL TABLE artistsearch USING fts3(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, picture TEXT);");
                 transaction.executeSql("select * from songArtist", [], function(transaction,res) {
-                    alert(res.rows.length);
-                     
-                    alert(result.length);
                     angular.forEach(result, function(d,key){
-                        if(d.id>70000){
+                        if(d.id<=100000){
                             transaction.executeSql("INSERT INTO songArtist (id,name, picture) values ("+d.id+",'"+d.name+"', '"+d.picture+"')");
                             transaction.executeSql("INSERT INTO artistsearch (id, name, picture) values ("+d.id+",'"+d.name+"', '"+d.picture+"')");
                         }

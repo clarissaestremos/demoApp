@@ -31,8 +31,7 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     $scope.$watch('online', function(newStatus) {});
     
     $scope.loader = {
-        loading: true,
-        notLoading: false
+        loading: true
     };
     
     $scope.searchLoader = {
@@ -44,23 +43,17 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     };
     
     BrowseService.browse(db).then(function(data) {
-        console.log("successBrowse");
+        
         $scope.allData = data.response;
         $scope.loader.loading = false;
-        $scope.loader.notLoading = true;
     },function(){
-        
-        console.log("error");
         
         DataService.getData().then(function(data) {
                 
                 $scope.allData = data;
-                console.log("successGet");
             
             SaveService.saveData(data,db).then(function(){
-                console.log("successSave");
                 $scope.loader.loading = false;
-                $scope.loader.notLoading = true;
             });
                         
         }, function(reason) {
@@ -74,27 +67,12 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
         $scope.searchLoader.loading = true;
             SearchService.search(search_input,db).then(function(d) {
                 $scope.searchLoader.loading = false;
-
-                $scope.listOfArtist = d.response;
-                var length = $scope.listOfArtist.length;
-                $scope.pages1 = 10;
-                $scope.showButton=false;
-                if(length<$scope.pages1)
-                    $scope.pages1=length;
-                $scope.searchClicked = true;
-                
-                $scope.listOfArtist1= $scope.listOfArtist.slice(0,$scope.pages1);
-                $scope.numData1 = length;
-                $scope.numDataMore = length-$scope.pages1;
-                if($scope.numDataMore>0)
-                    $scope.showButton=true;
-                
+                searchResult(1,d.response);
             });
         }
     
     $scope.browseNative = function() {
-        
-            console.log("browseNative");
+            
             var nativeJavascriptListArtist = $scope.allData.slice(0,100);
             var ul = document.getElementById("nativeAddArtist");
             var start = new Date().getTime();
@@ -115,7 +93,6 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
             
         startRep = new Date().getTime();
         $scope.browseArtist = $scope.allData.slice(0,100);
-        console.log($scope.browseArtist);
             
     }
     
@@ -127,53 +104,68 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
         $scope.searchFTSLoader.loading = true;
         SearchService.searchFTS(search_input,db).then(function(d) {
                 $scope.searchFTSLoader.loading = false;
-                $scope.listOfArtistFTS = d.response;
-                var length = $scope.listOfArtistFTS.length;
-                $scope.showButtonFTS=false;
-                $scope.pages2 = 10;
-                if(length<$scope.pages2)
-                    $scope.pages2=length;
-                $scope.searchFTSClicked = true;
-                $scope.listOfArtist2= $scope.listOfArtistFTS.slice(0,$scope.pages2);
-                $scope.numData2 = length;
-                $scope.numDataMore2 = length-$scope.pages2;
-                if($scope.numDataMore2>0)
-                    $scope.showButtonFTS=true;
-                
+                searchResult(2,d.response);
             },function(e){alert(e.message);});
     }
 
+    function searchResult(searchType, result){
+        var length = result.length;
+        if(searchType == 1){
+            $scope.listOfArtist = result;
+            $scope.pages1 = length<10?length:10;
+            $scope.searchClicked = true;
+            $scope.listOfArtist1= $scope.listOfArtist.slice(0,$scope.pages1);
+            $scope.numData1 = length;
+            $scope.numDataMore = length-$scope.pages1>10?10:length-$scope.pages1;
+            $scope.showButton = $scope.numDataMore>0?true:false;
+        }
+        
+        else if(searchType==2){
+            $scope.listOfArtistFTS = result;
+            $scope.searchFTSClicked = true;
+            $scope.pages2 = length<10?length:10;
+            $scope.listOfArtist2= $scope.listOfArtistFTS.slice(0,$scope.pages2);
+            $scope.numData2 = length;
+            $scope.numDataMore2 = length-$scope.pages2>10?10:length-$scope.pages2;
+            $scope.showButtonFTS = $scope.numDataMore2>0?true:false;
+        }
+    }
     
     $scope.moreItem = function(){
-        
-        var pageCounter = $scope.listOfArtist.length-$scope.pages1;
-        if(pageCounter>10){
-            $scope.pages1=$scope.pages1+10;
-            $scope.numDataMore=$scope.listOfArtist.length-$scope.pages1;
-        }
-        else{
-            $scope.pages1=$scope.listOfArtist.length;
-            $scope.showButton=false;    
-            }
-        $scope.listOfArtist1= $scope.listOfArtist.slice(0,$scope.pages1);
-        
+        moreItems(1);
     }
     
     $scope.moreItem2 = function(){
-        
-        var pageCounter = $scope.listOfArtistFTS.length-$scope.pages2;
-        if(pageCounter>10){
-            $scope.pages2=$scope.pages2+10;
-            $scope.numDataMore2=$scope.listOfArtistFTS.length-$scope.pages2;
-        }
-        else{
-            $scope.pages2=$scope.listOfArtistFTS.length;
-            $scope.showButtonFTS=false;    
-            }
-        $scope.listOfArtist2= $scope.listOfArtistFTS.slice(0,$scope.pages2);
-        
+        moreItems(2);
     }
     
+    function moreItems(itemType){
+        if(itemType == 1){
+            if($scope.numData1-$scope.pages1>10){
+                $scope.pages1 = $scope.pages1+10;
+                var moreCounter = $scope.numData1-$scope.pages1;
+                $scope.numDataMore = moreCounter>10?10:moreCounter;
+            }
+            else{
+                $scope.pages1 = $scope.numData1;
+                $scope.showButton=false; 
+            }
+            $scope.listOfArtist1= $scope.listOfArtist.slice(0,$scope.pages1);    
+        }
+        
+        else if(itemType == 2){
+            if($scope.numData2-$scope.pages2>10){
+                $scope.pages2 = $scope.pages2+10;
+                var moreCounter = $scope.numData2-$scope.pages2;
+                $scope.numDataMore2 = moreCounter>10?10:moreCounter;
+            }
+            else{
+                $scope.pages2 = $scope.numData2;
+                $scope.showButtonFTS=false; 
+            }
+            $scope.listOfArtist2= $scope.listOfArtistFTS.slice(0,$scope.pages2);
+        }
+    }
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         var end = new Date().getTime();
         var time = end - startRep;
@@ -208,5 +200,3 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
                    $(".ham_menu").toggleClass("menuClosed");
                 });
 }]);
-
-   
