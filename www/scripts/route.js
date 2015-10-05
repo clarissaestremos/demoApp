@@ -10,6 +10,10 @@ myApp.config(function($routeProvider) {
         templateUrl: 'pages/about.html'
     })
     
+    .when('/profile', {
+        templateUrl: 'pages/profile.html'
+    })
+    
     .when('/browse', {
         templateUrl: 'pages/browse.html'
     })
