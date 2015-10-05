@@ -11,8 +11,8 @@
     <div class="row">
         <div class="col">
 
-            <div id ="ngClick" class="button button-full button-dark" ng-click="search(search_input)">'LIKE' <span ng-show="searchLoader.loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></div><br/>
-            <div ng-show="searchClicked">Showing {{pages1}} out of {{numData1}} data<br/></div>
+            <div id ="ngClick" class="button button-full button-dark" ng-click="search(search_input)">'LIKE' <span ng-show="searchLoader.loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></div>
+            <div ng-show="searchClicked">Showing {{pages1}} out of {{numData1}} data<br/><br/></div>
 
             <ul><li ng-repeat="item in listOfArtist1">    
                 <div class="card">
@@ -34,8 +34,8 @@
     
     <div class="col">
 
-        <button ng-click="searchFTS(search_input)" class="button button-full button-dark">FTS <span ng-show="searchFTSLoader.loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></button><br/>
-        <div ng-show="searchFTSClicked">Showing {{pages2}} out of {{numData2}} data<br/></div>
+        <button ng-click="searchFTS(search_input)" class="button button-full button-dark">FTS <span ng-show="searchFTSLoader.loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></button>
+        <div ng-show="searchFTSClicked">Showing {{pages2}} out of {{numData2}} data<br/><br/></div>
         
         
         
