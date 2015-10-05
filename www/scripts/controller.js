@@ -31,8 +31,7 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     $scope.$watch('online', function(newStatus) {});
     
     $scope.loader = {
-        loading: true,
-        notLoading: false
+        loading: true
     };
     
     $scope.searchLoader = {
@@ -47,7 +46,6 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
         
         $scope.allData = data.response;
         $scope.loader.loading = false;
-        $scope.loader.notLoading = true;
     },function(){
         
         DataService.getData().then(function(data) {
@@ -56,7 +54,6 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
             
             SaveService.saveData(data,db).then(function(){
                 $scope.loader.loading = false;
-                $scope.loader.notLoading = true;
             });
                         
         }, function(reason) {
