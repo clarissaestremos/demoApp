@@ -1,7 +1,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
-    var startLoad2 = new Date().getTime();
-    alert(startLoad2);
+    var start1 = new Date().getTime();
+    $('#inputStart').val(start1);
 });
 </script>
 
@@ -27,8 +27,18 @@ $(document).ready(function() {
 <link href="../stylesheets/bootstrap/img/glyphicons-halflings-white.png" rel="stylesheet">
 
 <div class="favorite-bootstrap2-container">
+    
+    <img id="album_cover" src="../images/imaginesmoke.png"/>
+    
+    <br><br>
 
-    <button class="btn">PLAY</button>
+    <div class="play_buttons">
+    <center>
+        <button class="btn"><img src="../images/play_icon.svg"/></button>
+        <button class="btn"><img src="../images/pause_icon.svg"/></button>
+        <button class="btn"><img src="../images/stop_icon.svg"/></button>
+    </center>   
+    </div>
 
     <br><br>
 
@@ -52,7 +62,7 @@ $(document).ready(function() {
     <div class="btnpagination">    
         <div class="btn-toolbar">
           <div class="btn-group">
-            <button id="active-page-fav" class="btn">1</button>
+            <button class="btn">1</button>
             <button class="btn">2</button>
             <button class="btn">3</button>
             <button class="btn">4</button>
@@ -61,12 +71,67 @@ $(document).ready(function() {
         </div>
     </div>
     
+    <input id="inputStart" type="hidden" />
+    <input id="inputEnd" type="hidden" />
+    
 </div>
+
 
 <script type="text/javascript">
 $(document).ready(function() {
- // executes when HTML-Document is loaded and DOM is ready
-    var end = new Date().getTime();
-    alert(end);
+    var end1 = new Date().getTime();
+    $('#inputEnd').val(end1);
+        var strt1 = $('#inputStart').val();
+        var en1 = $('#inputEnd').val();
+    var ans1 = (en1 - strt1);
+    alert("Excecution time: " + ans1 + " milliseconds");
 });
+    
+    var onoff = 0;
+    
+    $(".dlBtn").click(function(){
+        if(onoff == 0) {
+            $(this).html("ON");
+            onoff = 1;
+            $("#hideProgress").css( "display", "block" );
+            increaseProgress();
+        }
+        else if(onoff == 1) {
+            $(this).html("OFF");
+            $("#hideProgress").css( "display", "none" );
+            onoff = 0;
+        }
+    });
+    
+    var varCounter = 0;
+
+    var increaseBar = function(){
+     if(varCounter <= 5) {
+          ++varCounter;
+          $("#p-bar").css( "width", "+=52%" );
+     } 
+     else if(varCounter == 6){
+          clearInterval(increaseProgress);
+          $("#success-loaded").css( "display", "block" );
+          removeSuccessMessage();    
+          ++varCounter;
+     }
+    };
+    
+    function removeSuccessMessage() {
+        setTimeout(function(){ 
+            $("#success-loaded").css( "display", "none" );
+            removeProgress();
+        }, 3000);
+    };
+    
+    function removeProgress() {
+        setTimeout(function(){ 
+            $("#hideProgress").css( "display", "none" );
+        }, 2000);
+    };
+    
+    function increaseProgress() {
+        setInterval(increaseBar, 1000);          
+    };
 </script>

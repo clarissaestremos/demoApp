@@ -1,0 +1,44 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    var start1 = new Date().getTime();
+    $('#inputStart').val(start1);
+});
+</script>
+
+<div class="chooseTabs">
+    <a href="#/playlist">
+    <div class="tabs-top1">
+        My Playlist
+    </div>
+    </a>
+    <a href="#/gradient">
+    <div class="tabs-top2">
+        Gradient
+    </div>
+    </a>
+    <a href="#/bgimage">
+    <div id="active" class="tabs-top3">
+        Image
+    </div>
+    </a>
+</div>
+
+<br><br><br><br>
+
+<div class="bg-page-container">
+    <img src="../images/bg.png"/>
+</div>
+
+    <input id="inputStart" type="hidden" />
+    <input id="inputEnd" type="hidden" />
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var end1 = new Date().getTime();
+        $('#inputEnd').val(end1);
+            var strt1 = $('#inputStart').val();
+            var en1 = $('#inputEnd').val();
+        var ans1 = (en1 - strt1);
+        alert("Excecution time: " + ans1 + " milliseconds");
+    });
+</script>

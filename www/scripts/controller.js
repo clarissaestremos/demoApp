@@ -50,15 +50,11 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
         $scope.loader.notLoading = true;
     },function(){
         
-        console.log("error");
-        
         DataService.getData().then(function(data) {
                 
                 $scope.allData = data;
-                console.log("successGet");
             
             SaveService.saveData(data,db).then(function(){
-                console.log("successSave");
                 $scope.loader.loading = false;
                 $scope.loader.notLoading = true;
             });
@@ -114,9 +110,12 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     $scope.browseRepeat = function() {
             
         startRep = new Date().getTime();
-        $scope.browseArtist.result= $scope.allData.slice(0,100);
-        console.log($scope.browseArtist);
+        $scope.browseArtist = $scope.allData.slice(0,100);
             
+    }
+    
+    $scope.resetBrowseRepeat = function() {
+       $scope.browseArtist = [];    
     }
     
     $scope.searchFTS = function(search_input){
@@ -169,55 +168,6 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
         $scope.listOfArtist2= $scope.listOfArtistFTS.slice(0,$scope.pages2);
         
     }
-    
-        var onoff = 0;
-    
-    $(".dlBtn").click(function(){
-        if(onoff == 0) {
-            $(this).html("ON");
-            onoff = 1;
-            $("#hideProgress").css( "display", "block" );
-            increaseProgress();
-        }
-        else if(onoff == 1) {
-            $(this).html("OFF");
-            $("#hideProgress").css( "display", "none" );
-            onoff = 0;
-        }
-    });
-    
-    var varCounter = 0;
-
-
-    var increaseBar = function(){
-     if(varCounter <= 5) {
-          ++varCounter;
-          $("#p-bar").css( "width", "+=52%" );
-     } 
-     else if(varCounter == 6){
-          clearInterval(increaseProgress);
-          $("#success-loaded").css( "display", "block" );
-          removeSuccessMessage();    
-          ++varCounter;
-     }
-    };
-    
-    function removeSuccessMessage() {
-        setTimeout(function(){ 
-            $("#success-loaded").css( "display", "none" );
-            removeProgress();
-        }, 3000);
-    };
-    
-    function removeProgress() {
-        setTimeout(function(){ 
-            $("#hideProgress").css( "display", "none" );
-        }, 2000);
-    };
-    
-    function increaseProgress() {
-        setInterval(increaseBar, 1000);          
-    };
     
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         var end = new Date().getTime();
