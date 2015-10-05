@@ -1,0 +1,45 @@
+<div class="profile-container">
+    <div class="media-query-container">
+        <img data-src="../images/ari-res.png" 
+             data-alt="kitten" 
+             class="mediaquerydependent" 
+             data-media="screen and (min-width : 320px) and (max-width : 480px)">
+        <img data-src="../images/arianna.png" 
+             data-alt="kitten" 
+             class="mediaquerydependent" 
+             data-media="screen and (min-width : 480px) and (max-width : 1024px)">
+    </div>
+    
+    <br>
+
+    <div class="profile-details">
+        <p><strong>Name:</strong> Ariana Grande-Butera</p>
+        <p><strong>Date of Birth:</strong> 26 June 1993</p>
+        <p><strong>Height:</strong> 5' 0¼" (1.53 m)</p>
+        <p><strong>Mini Bio:</strong></p>
+        <p>Ariana is a singer and lyricist. She was born in Boca Raton, Florida, to Joan Grande and Edward Butera, both of whom are of Italian descent. After growing up in Florida, She moved to Los Angeles when she received the role of "Cat Valentine" in Nickelodeon's Victorious (2010), along with Victoria Justice and Elizabeth Gillies. Ariana's older half-brother, Frankie Grande, is the only son of his and Ariana's mother, Joan Grande. Ariana has a love for fauna and has her own dog, Cocoa.</p>
+        <p><strong>Reference:</strong> http://www.imdb.com/name/nm3812858/bio</p>
+    </div>
+</div>
+
+
+<script>
+    (function(){
+      var queries = document.
+                    querySelectorAll('.mediaquerydependent'),
+          all = queries.length,
+          cur = null,
+          attr = null;
+      while (all--) {
+        cur = queries[all];
+        if (cur.dataset.media &&
+            window.matchMedia(cur.dataset.media).matches) {
+          for (attr in cur.dataset) {
+            if (attr !== 'media') {
+              cur.setAttribute(attr, cur.dataset[attr]);
+            }
+          }
+        }
+      }
+    }());
+</script>
