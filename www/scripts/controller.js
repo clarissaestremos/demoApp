@@ -26,6 +26,8 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     $scope.pageSize = 100;
     $scope.maxSize = 3;
     $scope.allData = [];
+    $searchTimer = 0;
+    $searchFTSTimer = 0;
     
 
     $scope.$watch('online', function(newStatus) {});
@@ -65,9 +67,11 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
 
     $scope.search = function(search_input) {
         $scope.searchLoader.loading = true;
+        var dateNow = Date.now();
             SearchService.search(search_input,db).then(function(d) {
                 $scope.searchLoader.loading = false;
                 searchResult(1,d.response);
+                $scope.searchTimer = Date.now() - dateNow;
             });
         }
     
@@ -102,9 +106,11 @@ myApp.controller('IndexController', ['supersonic', 'DataService', '$scope','Sear
     
     $scope.searchFTS = function(search_input){
         $scope.searchFTSLoader.loading = true;
+        var timer = Date.now();
         SearchService.searchFTS(search_input,db).then(function(d) {
                 $scope.searchFTSLoader.loading = false;
                 searchResult(2,d.response);
+                $scope.searchFTSTimer = Date.now() - timer;
             },function(e){alert(e.message);});
     }
 
